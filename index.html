@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1795,6 +1796,73 @@
     <script>
 
         /* =====================================================
+           REMOVE URL TRACKING PARAMETERS
+        ====================================================== */
+
+        (function () {
+
+            const trackingParams = [
+                "utm_source",
+                "utm_medium",
+                "utm_campaign",
+                "utm_term",
+                "utm_content",
+                "gclid",
+                "fbclid"
+            ];
+
+
+            const url =
+                new URL(window.location.href);
+
+
+            let changed = false;
+
+
+            trackingParams.forEach(
+                (param) => {
+
+                    if (
+                        url.searchParams.has(param)
+                    ) {
+
+                        url.searchParams.delete(
+                            param
+                        );
+
+                        changed = true;
+
+                    }
+
+                }
+            );
+
+
+            if (changed) {
+
+                const cleanUrl =
+                    url.pathname +
+                    (
+                        url.searchParams.toString()
+                            ? "?" +
+                              url.searchParams.toString()
+                            : ""
+                    ) +
+                    url.hash;
+
+
+                window.history.replaceState(
+                    {},
+                    document.title,
+                    cleanUrl
+                );
+
+            }
+
+        })();
+
+
+        /* =====================================================
            MOBILE NAVIGATION
         ====================================================== */
 
@@ -1990,3 +2058,4 @@
 
 </body>
 </html>
+```
