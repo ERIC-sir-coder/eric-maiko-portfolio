@@ -1,7 +1,8 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -29,9 +30,12 @@
         content="index, follow"
     >
 
-    <title>
-        Eric Maiko | ICT & Digital Solutions Professional
-    </title>
+    <title>Eric Maiko | ICT &amp; Digital Solutions Professional</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
 
     <link
         rel="preconnect"
@@ -49,13 +53,35 @@
         rel="stylesheet"
     >
 
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         MAIN STYLESHEET
+    ====================================================== -->
+
     <link
         rel="stylesheet"
         href="style.css"
     >
+
 </head>
 
+
 <body>
+
+
+    <!-- =====================================================
+         SKIP LINK
+    ====================================================== -->
 
     <a
         href="#main-content"
@@ -76,10 +102,13 @@
             <a
                 href="#home"
                 class="brand"
-                aria-label="Eric Maiko home"
+                aria-label="Eric Maiko — ICT and Digital Solutions"
             >
 
-                <span class="brand-logo">
+                <span
+                    class="brand-logo"
+                    aria-hidden="true"
+                >
                     EM
                 </span>
 
@@ -90,13 +119,15 @@
                     </strong>
 
                     <span>
-                        ICT & Digital Solutions
+                        ICT &amp; Digital Solutions
                     </span>
 
                 </span>
 
             </a>
 
+
+            <!-- MOBILE MENU BUTTON -->
 
             <button
                 type="button"
@@ -114,39 +145,21 @@
             </button>
 
 
+            <!-- PRIMARY NAVIGATION -->
+
             <nav
                 class="main-navigation"
                 id="main-navigation"
                 aria-label="Primary navigation"
             >
 
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#about">
-                    About
-                </a>
-
-                <a href="#expertise">
-                    Expertise
-                </a>
-
-                <a href="#projects">
-                    Projects
-                </a>
-
-                <a href="#masterclasses">
-                    Masterclasses
-                </a>
-
-                <a href="#experience">
-                    Experience
-                </a>
-
-                <a href="#contact">
-                    Contact
-                </a>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#projects">Projects</a>
+                <a href="#masterclasses">Masterclasses</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
 
                 <a
                     href="#contact"
@@ -162,22 +175,28 @@
     </header>
 
 
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
     <main id="main-content">
 
 
         <!-- =================================================
-             HERO
+             HOME / HERO
         ================================================== -->
 
         <section
             class="hero"
             id="home"
+            aria-labelledby="hero-title"
         >
 
             <div
                 class="hero-pattern"
                 aria-hidden="true"
             ></div>
+
 
             <div class="container hero-grid">
 
@@ -190,12 +209,12 @@
                             aria-hidden="true"
                         ></span>
 
-                        ICT & DIGITAL PROFESSIONAL
+                        ICT &amp; DIGITAL PROFESSIONAL
 
                     </div>
 
 
-                    <h1>
+                    <h1 id="hero-title">
 
                         Building practical
                         <span>
@@ -208,7 +227,7 @@
 
                     <p class="hero-lead">
 
-                        I’m Eric Maiko, an ICT professional and digital
+                        I'm Eric Maiko, an ICT professional and digital
                         solutions specialist with a practical focus on
                         IT support, software development, web development,
                         systems support and digital technology.
@@ -266,9 +285,7 @@
                 </div>
 
 
-                <!-- =================================================
-                     PROFILE
-                ================================================== -->
+                <!-- PROFILE CARD -->
 
                 <div class="hero-profile">
 
@@ -297,6 +314,8 @@
                                 alt="Eric Maiko profile picture"
                                 id="profile-image"
                                 class="profile-image visible"
+                                loading="eager"
+                                decoding="async"
                             >
 
                         </div>
@@ -305,7 +324,7 @@
                         <div class="profile-information">
 
                             <h2>
-                                ICT & Digital Solutions
+                                ICT &amp; Digital Solutions
                             </h2>
 
                             <p>
@@ -367,6 +386,7 @@
         <section
             class="section"
             id="about"
+            aria-labelledby="about-title"
         >
 
             <div class="container">
@@ -379,7 +399,7 @@
                             ABOUT ME
                         </span>
 
-                        <h2>
+                        <h2 id="about-title">
                             Technology with a practical purpose.
                         </h2>
 
@@ -410,6 +430,7 @@
 
                         </p>
 
+
                         <p>
 
                             My technical foundation covers IT support,
@@ -419,6 +440,7 @@
                             support and cybersecurity fundamentals.
 
                         </p>
+
 
                         <p>
 
@@ -430,6 +452,7 @@
 
                         </p>
 
+
                         <p>
 
                             I enjoy taking a practical problem, understanding
@@ -437,6 +460,7 @@
                             accessible and useful technology solution.
 
                         </p>
+
 
                         <p>
 
@@ -468,13 +492,14 @@
 
                         </p>
 
+
                         <div class="highlight-list">
 
                             <span>✓ Technical support</span>
                             <span>✓ Application development</span>
-                            <span>✓ Web & WordPress</span>
-                            <span>✓ Systems & networking</span>
-                            <span>✓ Data & databases</span>
+                            <span>✓ Web &amp; WordPress</span>
+                            <span>✓ Systems &amp; networking</span>
+                            <span>✓ Data &amp; databases</span>
                             <span>✓ Digital content</span>
 
                         </div>
@@ -495,6 +520,7 @@
         <section
             class="section section-soft"
             id="expertise"
+            aria-labelledby="expertise-title"
         >
 
             <div class="container">
@@ -504,10 +530,10 @@
                     <div>
 
                         <span class="section-kicker">
-                            TECHNICAL & DIGITAL EXPERTISE
+                            TECHNICAL &amp; DIGITAL EXPERTISE
                         </span>
 
-                        <h2>
+                        <h2 id="expertise-title">
                             What I work with.
                         </h2>
 
@@ -525,192 +551,252 @@
                 <div class="expertise-grid">
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">01</div>
+
                         <h3>IT Support</h3>
+
                         <p>
                             Computer hardware, software installation,
                             Windows systems, troubleshooting and user
                             technical assistance.
                         </p>
+
                         <div class="tag-list">
                             <span>Hardware</span>
                             <span>Windows</span>
                             <span>Troubleshooting</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">02</div>
+
                         <h3>Software Development</h3>
+
                         <p>
                             Responsive applications, component-based
                             development, application workflows and
                             practical software solutions.
                         </p>
+
                         <div class="tag-list">
                             <span>React</span>
                             <span>TypeScript</span>
                             <span>Vite</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">03</div>
+
                         <h3>Web Development</h3>
+
                         <p>
                             Responsive websites and web applications
                             designed for desktop, tablet and mobile
                             experiences.
                         </p>
+
                         <div class="tag-list">
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>Tailwind</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">04</div>
+
                         <h3>Systems Support</h3>
+
                         <p>
                             Application support, system maintenance,
                             user access, technical assistance and
                             problem diagnosis.
                         </p>
+
                         <div class="tag-list">
                             <span>Systems</span>
                             <span>Applications</span>
                             <span>Support</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">05</div>
-                        <h3>Data & Databases</h3>
+
+                        <h3>Data &amp; Databases</h3>
+
                         <p>
                             Database management, MySQL, data processing
                             and electronic records management.
                         </p>
+
                         <div class="tag-list">
                             <span>MySQL</span>
                             <span>Data</span>
                             <span>Records</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">06</div>
-                        <h3>Networking & Security</h3>
+
+                        <h3>Networking &amp; Security</h3>
+
                         <p>
                             LAN/WAN support, basic router and switch
                             configuration and cybersecurity fundamentals.
                         </p>
+
                         <div class="tag-list">
                             <span>LAN/WAN</span>
                             <span>Security</span>
                             <span>ICT</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">07</div>
-                        <h3>WordPress & Web Design</h3>
+
+                        <h3>WordPress &amp; Web Design</h3>
+
                         <p>
                             Website structure, WordPress setup, page
                             design, responsive layouts and practical
                             website management.
                         </p>
+
                         <div class="tag-list">
                             <span>WordPress</span>
                             <span>Web Design</span>
                             <span>CMS</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">08</div>
-                        <h3>Online Writing & Blogging</h3>
+
+                        <h3>Online Writing &amp; Blogging</h3>
+
                         <p>
                             Digital articles, blog content, informative
                             writing, structured online content and
                             audience-focused communication.
                         </p>
+
                         <div class="tag-list">
                             <span>Blogging</span>
                             <span>Writing</span>
                             <span>Content</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">09</div>
+
                         <h3>Digital Solutions</h3>
+
                         <p>
                             Practical use of technology to improve
                             workflows, communication, information access
                             and everyday business activities.
                         </p>
+
                         <div class="tag-list">
                             <span>Digital</span>
                             <span>Solutions</span>
                             <span>Productivity</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">10</div>
+
                         <h3>Personal Branding</h3>
+
                         <p>
                             Professional online presence, portfolio
                             development, digital identity and practical
                             personal brand presentation.
                         </p>
+
                         <div class="tag-list">
                             <span>Branding</span>
                             <span>Portfolio</span>
                             <span>Digital Identity</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">11</div>
-                        <h3>Digital Content & Productivity</h3>
+
+                        <h3>Digital Content &amp; Productivity</h3>
+
                         <p>
                             Digital documents, presentations, spreadsheets,
                             productivity tools and structured content
                             creation.
                         </p>
+
                         <div class="tag-list">
                             <span>Microsoft Office</span>
                             <span>Canva</span>
                             <span>Productivity</span>
                         </div>
+
                     </article>
 
 
                     <article class="expertise-card">
+
                         <div class="expertise-number">12</div>
-                        <h3>Digital Learning & Training</h3>
+
+                        <h3>Digital Learning &amp; Training</h3>
+
                         <p>
                             Practical digital skills, technology learning,
                             beginner-friendly training and knowledge
                             sharing.
                         </p>
+
                         <div class="tag-list">
                             <span>Training</span>
                             <span>Digital Skills</span>
                             <span>Learning</span>
                         </div>
+
                     </article>
 
                 </div>
@@ -719,7 +805,7 @@
                 <div class="technology-bar">
 
                     <span>
-                        TECHNOLOGIES & TOOLS
+                        TECHNOLOGIES &amp; TOOLS
                     </span>
 
                     <div class="technology-list">
@@ -755,6 +841,7 @@
         <section
             class="section project-section"
             id="projects"
+            aria-labelledby="projects-title"
         >
 
             <div class="container">
@@ -767,7 +854,7 @@
                             FEATURED PROJECT
                         </span>
 
-                        <h2>
+                        <h2 id="projects-title">
                             BusinessConnect
                         </h2>
 
@@ -783,11 +870,6 @@
 
 
                 <article class="featured-project">
-
-
-                    <!-- =================================================
-                         PROJECT CONTENT
-                    ================================================== -->
 
                     <div class="project-content">
 
@@ -839,65 +921,42 @@
                         <div class="project-modules">
 
                             <div>
-                                <strong>
-                                    Dashboard
-                                </strong>
-
+                                <strong>Dashboard</strong>
                                 <span>
                                     Business performance and daily activity.
                                 </span>
                             </div>
 
-
                             <div>
-                                <strong>
-                                    Inventory
-                                </strong>
-
+                                <strong>Inventory</strong>
                                 <span>
                                     Products, stock and inventory status.
                                 </span>
                             </div>
 
-
                             <div>
-                                <strong>
-                                    Transactions
-                                </strong>
-
+                                <strong>Transactions</strong>
                                 <span>
                                     Transaction recording and status handling.
                                 </span>
                             </div>
 
-
                             <div>
-                                <strong>
-                                    Requests
-                                </strong>
-
+                                <strong>Requests</strong>
                                 <span>
                                     Business requests and pending activity.
                                 </span>
                             </div>
 
-
                             <div>
-                                <strong>
-                                    People
-                                </strong>
-
+                                <strong>People</strong>
                                 <span>
                                     Personnel records and management.
                                 </span>
                             </div>
 
-
                             <div>
-                                <strong>
-                                    Reports & Settings
-                                </strong>
-
+                                <strong>Reports &amp; Settings</strong>
                                 <span>
                                     Business information and reporting.
                                 </span>
@@ -926,7 +985,6 @@
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="project-cta project-cta-primary"
-                                aria-label="Open BusinessConnect live project"
                             >
 
                                 <span>
@@ -941,6 +999,7 @@
                                     fill="none"
                                     aria-hidden="true"
                                 >
+
                                     <path
                                         d="M7 17L17 7"
                                         stroke="currentColor"
@@ -955,6 +1014,7 @@
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                     />
+
                                 </svg>
 
                             </a>
@@ -965,7 +1025,6 @@
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="project-cta project-cta-secondary"
-                                aria-label="View BusinessConnect source code on GitHub"
                             >
 
                                 <svg
@@ -976,9 +1035,11 @@
                                     fill="currentColor"
                                     aria-hidden="true"
                                 >
+
                                     <path
                                         d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.73 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.78 1.04.78 2.1v3.11c0 .3.21.65.79.54A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
                                     />
+
                                 </svg>
 
                                 <span>
@@ -991,10 +1052,6 @@
 
                     </div>
 
-
-                    <!-- =================================================
-                         BUSINESSCONNECT DASHBOARD
-                    ================================================== -->
 
                     <div class="project-image-area">
 
@@ -1019,11 +1076,12 @@
 
                             </div>
 
-
                             <img
                                 src="businessconnect-dashboard.png"
                                 alt="BusinessConnect dashboard showing business operations management"
                                 class="businessconnect-image"
+                                loading="lazy"
+                                decoding="async"
                             >
 
                         </div>
@@ -1044,6 +1102,7 @@
         <section
             class="section section-soft"
             id="masterclasses"
+            aria-labelledby="masterclasses-title"
         >
 
             <div class="container">
@@ -1056,7 +1115,7 @@
                             MASTERCLASSES
                         </span>
 
-                        <h2>
+                        <h2 id="masterclasses-title">
                             Practical digital skills for real-world use.
                         </h2>
 
@@ -1074,90 +1133,122 @@
                 <div class="education-grid">
 
                     <article class="education-card">
+
                         <span class="education-year">01</span>
+
                         <h3>Web Design</h3>
+
                         <p>
                             Learn the foundations of professional website
                             structure, responsive layouts, typography,
                             accessibility and modern web presentation.
                         </p>
+
                     </article>
 
 
                     <article class="education-card">
+
                         <span class="education-year">02</span>
+
                         <h3>WordPress</h3>
+
                         <p>
                             Practical WordPress skills covering website
                             setup, pages, content management, customization
                             and maintaining a professional online presence.
                         </p>
+
                     </article>
 
 
                     <article class="education-card">
+
                         <span class="education-year">03</span>
+
                         <h3>Blogging</h3>
+
                         <p>
                             Building useful blog content, structuring
                             articles, developing publishing habits and
                             communicating ideas clearly online.
                         </p>
+
                     </article>
 
 
                     <article class="education-card">
+
                         <span class="education-year">04</span>
+
                         <h3>Online Writing</h3>
+
                         <p>
                             Practical digital writing for websites, blogs,
                             professional profiles, educational content
                             and online communication.
                         </p>
+
                     </article>
 
 
                     <article class="education-card">
+
                         <span class="education-year">05</span>
+
                         <h3>Personal Branding</h3>
+
                         <p>
                             Developing a professional digital identity,
                             portfolio, online presence and consistent
                             presentation of your skills.
                         </p>
+
                     </article>
 
 
                     <article class="education-card">
+
                         <span class="education-year">06</span>
+
                         <h3>Digital Skills</h3>
+
                         <p>
                             Practical computer, productivity, internet,
                             digital communication and technology skills
                             for everyday and professional work.
                         </p>
+
                     </article>
 
 
                     <article class="education-card">
+
                         <span class="education-year">07</span>
+
                         <h3>Personal Finance</h3>
+
                         <p>
                             Practical learning around budgeting, financial
                             organization, saving habits, digital financial
                             tools and responsible money management.
                         </p>
+
                     </article>
 
 
                     <article class="education-card">
+
                         <span class="education-year">08</span>
-                        <h3>Digital & Professional Development</h3>
+
+                        <h3>Digital &amp; Professional Development</h3>
+
                         <p>
                             Building practical digital habits, improving
                             professional presentation and using technology
                             to support career and freelance opportunities.
                         </p>
+
                     </article>
 
                 </div>
@@ -1174,6 +1265,7 @@
         <section
             class="section section-dark"
             id="experience"
+            aria-labelledby="experience-title"
         >
 
             <div class="container">
@@ -1186,7 +1278,7 @@
                             EXPERIENCE
                         </span>
 
-                        <h2>
+                        <h2 id="experience-title">
                             Practical experience and training.
                         </h2>
 
@@ -1205,7 +1297,10 @@
 
                     <article class="timeline-item">
 
-                        <div class="timeline-marker">
+                        <div
+                            class="timeline-marker"
+                            aria-hidden="true"
+                        >
                             01
                         </div>
 
@@ -1230,6 +1325,7 @@
                             </p>
 
                             <ul>
+
                                 <li>
                                     Developed Dashboard, Inventory,
                                     Transactions, Requests, People,
@@ -1259,6 +1355,7 @@
                                     Deployed the production application
                                     using Vercel.
                                 </li>
+
                             </ul>
 
                         </div>
@@ -1268,7 +1365,10 @@
 
                     <article class="timeline-item">
 
-                        <div class="timeline-marker">
+                        <div
+                            class="timeline-marker"
+                            aria-hidden="true"
+                        >
                             02
                         </div>
 
@@ -1301,7 +1401,10 @@
 
                     <article class="timeline-item">
 
-                        <div class="timeline-marker">
+                        <div
+                            class="timeline-marker"
+                            aria-hidden="true"
+                        >
                             03
                         </div>
 
@@ -1312,7 +1415,7 @@
                             </span>
 
                             <h3>
-                                IT Support & Systems
+                                IT Support &amp; Systems
                             </h3>
 
                             <span class="timeline-date">
@@ -1333,7 +1436,10 @@
 
                     <article class="timeline-item">
 
-                        <div class="timeline-marker">
+                        <div
+                            class="timeline-marker"
+                            aria-hidden="true"
+                        >
                             04
                         </div>
 
@@ -1344,11 +1450,11 @@
                             </span>
 
                             <h3>
-                                Web, WordPress & Digital Content
+                                Web, WordPress &amp; Digital Content
                             </h3>
 
                             <span class="timeline-date">
-                                Digital Skills & Practical Development
+                                Digital Skills &amp; Practical Development
                             </span>
 
                             <p>
@@ -1373,7 +1479,11 @@
              EDUCATION
         ================================================== -->
 
-        <section class="section">
+        <section
+            class="section education-section"
+            id="education"
+            aria-labelledby="education-title"
+        >
 
             <div class="container">
 
@@ -1385,8 +1495,8 @@
                             EDUCATION
                         </span>
 
-                        <h2>
-                            Education & ICT foundation.
+                        <h2 id="education-title">
+                            Education &amp; ICT foundation.
                         </h2>
 
                     </div>
@@ -1463,7 +1573,11 @@
              CAREER DIRECTION
         ================================================== -->
 
-        <section class="career-section">
+        <section
+            class="career-section"
+            id="career"
+            aria-labelledby="career-title"
+        >
 
             <div class="container">
 
@@ -1475,7 +1589,7 @@
                             CAREER DIRECTION
                         </span>
 
-                        <h2>
+                        <h2 id="career-title">
                             Looking for opportunities where technology
                             can make a practical difference.
                         </h2>
@@ -1520,222 +1634,351 @@
         <section
             class="section contact-section"
             id="contact"
+            aria-labelledby="contact-title"
         >
 
             <div class="container">
 
-                <div class="contact-grid">
 
-                    <div class="contact-intro">
+                <!-- CONTACT HEADER -->
+
+                <div class="contact-header">
+
+                    <div>
 
                         <span class="section-kicker">
                             CONTACT
                         </span>
 
-                        <h2>
+                        <h2 id="contact-title">
                             Let's build something useful.
                         </h2>
 
-                        <p>
-                            Whether you are hiring for an ICT or digital
-                            role, looking for technical support, need a
-                            website or application developed, need
-                            WordPress or web design support, require
-                            online writing or blogging, or have another
-                            digital opportunity, I would be glad to connect.
-                        </p>
+                    </div>
+
+                    <p>
+                        Have an opportunity, project, technical challenge
+                        or digital idea? Let's connect and discuss how
+                        I can contribute.
+                    </p>
+
+                </div>
 
 
-                        <div class="contact-availability">
+                <!-- AVAILABILITY -->
 
-                            <span
-                                class="availability-indicator"
-                                aria-hidden="true"
-                            ></span>
+                <div class="contact-availability-wide">
 
-                            <div>
+                    <div class="contact-status">
 
-                                <strong>
-                                    Available for Opportunities
-                                </strong>
+                        <span
+                            class="availability-indicator"
+                            aria-hidden="true"
+                        ></span>
 
-                                <p>
-                                    Online • Remote • On-Site • Full-Time
-                                    • Part-Time • Freelance • Internship
-                                </p>
+                        <div>
 
-                            </div>
+                            <strong>
+                                Available for Opportunities
+                            </strong>
+
+                            <span>
+                                Online • Remote • On-Site • Full-Time •
+                                Part-Time • Freelance • Internship
+                            </span>
 
                         </div>
 
+                    </div>
 
-                        <div class="contact-details">
+                    <span class="contact-status-label">
+                        OPEN TO CONNECT
+                    </span>
 
-                            <a href="mailto:mokayaeric21@gmail.com">
-
-                                <span>Email</span>
-
-                                <strong>
-                                    mokayaeric21@gmail.com
-                                </strong>
-
-                            </a>
+                </div>
 
 
-                            <a href="tel:+254740786655">
+                <!-- CONTACT CONTENT -->
 
-                                <span>Phone</span>
-
-                                <strong>
-                                    +254 740 786 655
-                                </strong>
-
-                            </a>
+                <div class="contact-main">
 
 
-                            <a
-                                href="https://www.linkedin.com/in/ericmokaya/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                    <!-- LEFT CONTACT PANEL -->
 
-                                <span>LinkedIn</span>
+                    <div class="contact-introduction">
 
-                                <strong>
-                                    Eric Mokaya
-                                </strong>
+                        <span class="contact-panel-kicker">
+                            LET'S CONNECT
+                        </span>
 
-                            </a>
+                        <h3>
+                            Have an opportunity?
+                        </h3>
+
+                        <p>
+                            I'm open to professional opportunities,
+                            technical projects, digital solutions,
+                            freelance work and meaningful collaborations.
+                        </p>
 
 
-                            <a
-                                href="https://github.com/ERIC-sir-coder"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                        <div class="contact-focus">
 
-                                <span>GitHub</span>
+                            <span class="contact-focus-label">
+                                OPEN TO
+                            </span>
 
-                                <strong>
-                                    ERIC-sir-coder
-                                </strong>
+                            <strong>
+                                ICT, Digital &amp; Technology Opportunities
+                            </strong>
 
-                            </a>
+                            <span>
+                                Employment • Freelance • Internship
+                                • Projects • Collaboration
+                            </span>
 
                         </div>
 
                     </div>
 
 
-                    <form
-                        class="contact-form"
-                        id="contact-form"
-                    >
+                    <!-- RIGHT CONTACT PANEL -->
 
-                        <div class="form-row">
+                    <div class="contact-details">
 
-                            <div class="form-group">
+                        <span class="contact-panel-kicker">
+                            DIRECT CONTACT
+                        </span>
 
-                                <label for="name">
-                                    Full Name
-                                </label>
+                        <h3>
+                            Choose how to reach me.
+                        </h3>
 
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    autocomplete="name"
-                                    required
+
+                        <div class="contact-list">
+
+
+                            <!-- EMAIL -->
+
+                            <a
+                                href="mailto:mokayaeric21@gmail.com"
+                                class="contact-item contact-email"
+                                aria-label="Email Eric Maiko at mokayaeric21@gmail.com"
+                            >
+
+                                <span class="contact-item-label">
+                                    EMAIL
+                                </span>
+
+                                <span class="contact-item-value">
+
+                                    <img
+                                        src="https://cdn.simpleicons.org/gmail"
+                                        alt=""
+                                        width="22"
+                                        height="22"
+                                        aria-hidden="true"
+                                    >
+
+                                    <strong>
+                                        mokayaeric21@gmail.com
+                                    </strong>
+
+                                </span>
+
+                                <span
+                                    class="contact-item-arrow"
+                                    aria-hidden="true"
                                 >
+                                    ↗
+                                </span>
 
-                            </div>
+                            </a>
 
 
-                            <div class="form-group">
+                            <!-- PHONE / TRUECALLER -->
 
-                                <label for="email">
-                                    Email Address
-                                </label>
+                            <a
+                                href="tel:+254740786655"
+                                class="contact-item contact-phone"
+                                aria-label="Call Eric Maiko at +254 740 786 655"
+                            >
 
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    autocomplete="email"
-                                    required
+                                <span class="contact-item-label">
+                                    PHONE
+                                </span>
+
+                                <span class="contact-item-value">
+
+                                    <img
+                                        src="https://www.pngkit.com/png/detail/207-2079519_truecaller-truecaller-icon.png"
+                                        alt=""
+                                        width="22"
+                                        height="22"
+                                        aria-hidden="true"
+                                    >
+
+                                    <strong>
+                                        +254 740 786 655
+                                    </strong>
+
+                                </span>
+
+                                <span
+                                    class="contact-item-arrow"
+                                    aria-hidden="true"
                                 >
+                                    ↗
+                                </span>
 
-                            </div>
+                            </a>
+
+
+                            <!-- LINKEDIN -->
+
+                            <a
+                                href="https://www.linkedin.com/in/ericmokaya/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="contact-item contact-linkedin"
+                                aria-label="Visit Eric Mokaya on LinkedIn"
+                            >
+
+                                <span class="contact-item-label">
+                                    LINKEDIN
+                                </span>
+
+                                <span class="contact-item-value">
+
+                                    <i
+                                        class="fa-brands fa-linkedin-in"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    <strong>
+                                        Eric Mokaya
+                                    </strong>
+
+                                </span>
+
+                                <span
+                                    class="contact-item-arrow"
+                                    aria-hidden="true"
+                                >
+                                    ↗
+                                </span>
+
+                            </a>
+
+
+                            <!-- GITHUB -->
+
+                            <a
+                                href="https://github.com/ERIC-sir-coder"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="contact-item contact-github"
+                                aria-label="Visit Eric Maiko on GitHub"
+                            >
+
+                                <span class="contact-item-label">
+                                    GITHUB
+                                </span>
+
+                                <span class="contact-item-value">
+
+                                    <i
+                                        class="fa-brands fa-github"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    <strong>
+                                        ERIC-sir-coder
+                                    </strong>
+
+                                </span>
+
+                                <span
+                                    class="contact-item-arrow"
+                                    aria-hidden="true"
+                                >
+                                    ↗
+                                </span>
+
+                            </a>
+
 
                         </div>
 
+                    </div>
 
-                        <div class="form-row">
-
-                            <div class="form-group">
-
-                                <label for="phone">
-                                    Phone Number
-                                </label>
-
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    autocomplete="tel"
-                                >
-
-                            </div>
+                </div>
 
 
-                            <div class="form-group">
+                <!-- FINAL CTA -->
 
-                                <label for="subject">
-                                    Subject
-                                </label>
+                <div class="contact-cta">
 
-                                <input
-                                    type="text"
-                                    id="subject"
-                                    name="subject"
-                                    required
-                                >
+                    <div class="contact-cta-content">
 
-                            </div>
+                        <span class="contact-cta-label">
+                            HAVE AN OPPORTUNITY?
+                        </span>
 
-                        </div>
+                        <h3>
+                            Let's connect.
+                        </h3>
 
-
-                        <div class="form-group">
-
-                            <label for="message">
-                                Message
-                            </label>
-
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="7"
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-                        <button
-                            type="submit"
-                            class="button button-primary button-full"
-                        >
-                            Open Email
-                        </button>
-
-
-                        <p class="form-note">
-                            This form opens your email application.
-                            Your message is not stored on this website.
+                        <p>
+                            I'm open to professional opportunities,
+                            technical projects, digital solutions,
+                            freelance work and meaningful collaborations.
                         </p>
 
-                    </form>
+                    </div>
+
+
+                    <div class="contact-cta-actions">
+
+                        <a
+                            href="mailto:mokayaeric21@gmail.com"
+                            class="contact-button contact-button-primary"
+                        >
+
+                            <img
+                                src="https://cdn.simpleicons.org/gmail"
+                                alt=""
+                                width="20"
+                                height="20"
+                                aria-hidden="true"
+                            >
+
+                            <span>
+                                Email Me
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="https://www.linkedin.com/in/ericmokaya/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-button contact-button-secondary"
+                        >
+
+                            <i
+                                class="fa-brands fa-linkedin-in"
+                                aria-hidden="true"
+                            ></i>
+
+                            <span>
+                                Connect on LinkedIn
+                            </span>
+
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -1761,7 +2004,7 @@
                 </strong>
 
                 <span>
-                    ICT & Digital Solutions
+                    ICT &amp; Digital Solutions
                 </span>
 
             </div>
@@ -1774,14 +2017,20 @@
                 <a href="#expertise">Expertise</a>
                 <a href="#projects">Projects</a>
                 <a href="#masterclasses">Masterclasses</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#career">Career</a>
                 <a href="#contact">Contact</a>
 
             </div>
 
 
             <p>
-                © <span id="current-year"></span>
+
+                ©
+                <span id="current-year"></span>
                 Eric Maiko. All rights reserved.
+
             </p>
 
         </div>
@@ -1819,23 +2068,17 @@
             let changed = false;
 
 
-            trackingParams.forEach(
-                (param) => {
+            trackingParams.forEach((param) => {
 
-                    if (
-                        url.searchParams.has(param)
-                    ) {
+                if (url.searchParams.has(param)) {
 
-                        url.searchParams.delete(
-                            param
-                        );
+                    url.searchParams.delete(param);
 
-                        changed = true;
-
-                    }
+                    changed = true;
 
                 }
-            );
+
+            });
 
 
             if (changed) {
@@ -1844,8 +2087,7 @@
                     url.pathname +
                     (
                         url.searchParams.toString()
-                            ? "?" +
-                              url.searchParams.toString()
+                            ? "?" + url.searchParams.toString()
                             : ""
                     ) +
                     url.hash;
@@ -1869,6 +2111,7 @@
         const menuToggle =
             document.getElementById("menu-toggle");
 
+
         const mainNavigation =
             document.getElementById("main-navigation");
 
@@ -1880,14 +2123,14 @@
                 () => {
 
                     const open =
-                        mainNavigation.classList.toggle(
-                            "is-open"
-                        );
+                        mainNavigation.classList.toggle("is-open");
+
 
                     menuToggle.setAttribute(
                         "aria-expanded",
                         String(open)
                     );
+
 
                     menuToggle.setAttribute(
                         "aria-label",
@@ -1912,10 +2155,12 @@
                                 "is-open"
                             );
 
+
                             menuToggle.setAttribute(
                                 "aria-expanded",
                                 "false"
                             );
+
 
                             menuToggle.setAttribute(
                                 "aria-label",
@@ -1941,10 +2186,12 @@
                             "is-open"
                         );
 
+
                         menuToggle.setAttribute(
                             "aria-expanded",
                             "false"
                         );
+
 
                         menuToggle.setAttribute(
                             "aria-label",
@@ -1960,91 +2207,11 @@
 
 
         /* =====================================================
-           CONTACT FORM
-        ====================================================== */
-
-        const contactForm =
-            document.getElementById("contact-form");
-
-
-        if (contactForm) {
-
-            contactForm.addEventListener(
-                "submit",
-                (event) => {
-
-                    event.preventDefault();
-
-
-                    const formData =
-                        new FormData(
-                            contactForm
-                        );
-
-
-                    const name =
-                        String(
-                            formData.get("name") || ""
-                        ).trim();
-
-
-                    const email =
-                        String(
-                            formData.get("email") || ""
-                        ).trim();
-
-
-                    const phone =
-                        String(
-                            formData.get("phone") || ""
-                        ).trim();
-
-
-                    const subject =
-                        String(
-                            formData.get("subject") || ""
-                        ).trim();
-
-
-                    const message =
-                        String(
-                            formData.get("message") || ""
-                        ).trim();
-
-
-                    const body = [
-                        `Name: ${name}`,
-                        `Email: ${email}`,
-                        `Phone: ${phone}`,
-                        "",
-                        "Message:",
-                        message
-                    ].join("\n");
-
-
-                    const mailto =
-                        "mailto:mokayaeric21@gmail.com" +
-                        `?subject=${encodeURIComponent(subject)}` +
-                        `&body=${encodeURIComponent(body)}`;
-
-
-                    window.location.href =
-                        mailto;
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
            CURRENT YEAR
         ====================================================== */
 
         const currentYear =
-            document.getElementById(
-                "current-year"
-            );
+            document.getElementById("current-year");
 
 
         if (currentYear) {
@@ -2056,6 +2223,7 @@
 
     </script>
 
+
 </body>
+
 </html>
-```
