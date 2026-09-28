@@ -80,6 +80,15 @@
     --linkedin: #0a66c2;
     --github: #24292f;
 
+    /* --------------------------------------------------------
+       WHATSAPP
+       ADDED — EXISTING VARIABLES PRESERVED
+    -------------------------------------------------------- */
+
+    --whatsapp: #25d366;
+    --whatsapp-dark: #128c7e;
+    --whatsapp-light: #dcfce7;
+
 
     /* --------------------------------------------------------
        NEUTRALS
@@ -633,6 +642,40 @@ p:last-child {
     height: 18px;
 
     flex: 0 0 18px;
+}
+
+
+/* ============================================================
+   WHATSAPP HERO CTA
+   ADDED — EXISTING BUTTON STYLES PRESERVED
+============================================================ */
+
+.button-whatsapp {
+    background: var(--whatsapp);
+
+    color: var(--white);
+
+    border-color: var(--whatsapp);
+
+    box-shadow:
+        0 8px 20px
+        rgba(37, 211, 102, 0.20);
+}
+
+.button-whatsapp:hover {
+    background: var(--whatsapp-dark);
+
+    border-color: var(--whatsapp-dark);
+
+    color: var(--white);
+
+    box-shadow:
+        0 12px 26px
+        rgba(18, 140, 126, 0.25);
+}
+
+.button-whatsapp i {
+    font-size: 19px;
 }
 
 
@@ -2797,6 +2840,68 @@ p:last-child {
 
 
 /* ============================================================
+   WHATSAPP DIRECT CONTACT
+   ADDED — EXISTING CONTACT STYLES PRESERVED
+============================================================ */
+
+.contact-whatsapp {
+    border-left:
+        4px solid
+        var(--whatsapp);
+}
+
+.contact-whatsapp .contact-item-value i,
+.contact-whatsapp .contact-item-value .fa-whatsapp {
+    width: 21px;
+    height: 21px;
+
+    flex: 0 0 21px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--whatsapp);
+
+    font-size: 21px;
+
+    line-height: 1;
+}
+
+.contact-whatsapp .contact-item-value {
+    color: var(--whatsapp-dark);
+}
+
+.contact-whatsapp:hover {
+    border-color: var(--whatsapp);
+
+    box-shadow:
+        0 8px 22px
+        rgba(37, 211, 102, 0.16);
+}
+
+.contact-whatsapp:hover .contact-item-value i,
+.contact-whatsapp:hover .contact-item-value .fa-whatsapp {
+    color: var(--whatsapp-dark);
+}
+
+.contact-whatsapp:hover .contact-item-arrow {
+    background: var(--whatsapp-light);
+
+    color: var(--whatsapp-dark);
+}
+
+.contact-whatsapp:focus-visible {
+    outline:
+        4px solid
+        rgba(37, 211, 102, 0.35);
+
+    outline-offset: 3px;
+}
+
+
+/* ============================================================
    CONTACT ARROW
 ============================================================ */
 
@@ -3071,6 +3176,40 @@ p:last-child {
 
 
 /* ============================================================
+   WHATSAPP CONTACT CTA
+   ADDED — EXISTING CONTACT BUTTONS PRESERVED
+============================================================ */
+
+.contact-button-whatsapp {
+    background: var(--whatsapp);
+
+    color: var(--white);
+
+    border-color: var(--whatsapp);
+
+    box-shadow:
+        0 8px 20px
+        rgba(37, 211, 102, 0.20);
+}
+
+.contact-button-whatsapp:hover {
+    background: var(--whatsapp-dark);
+
+    border-color: var(--whatsapp-dark);
+
+    color: var(--white);
+
+    box-shadow:
+        0 12px 25px
+        rgba(18, 140, 126, 0.25);
+}
+
+.contact-button-whatsapp i {
+    font-size: 19px;
+}
+
+
+/* ============================================================
    SOCIAL PROFILE BUTTONS
 ============================================================ */
 
@@ -3206,6 +3345,37 @@ p:last-child {
         0 10px 24px
         rgba(36, 41, 47, 0.24);
 }
+
+
+/* ============================================================
+   WHATSAPP SOCIAL PROFILE
+   ADDED — EXISTING SOCIAL STYLES PRESERVED
+============================================================ */
+
+.social-whatsapp {
+    background: var(--whatsapp);
+
+    color: var(--white);
+
+    box-shadow:
+        0 7px 18px
+        rgba(37, 211, 102, 0.18);
+}
+
+.social-whatsapp:hover {
+    background: var(--whatsapp-dark);
+
+    color: var(--white);
+
+    box-shadow:
+        0 10px 24px
+        rgba(18, 140, 126, 0.25);
+}
+
+.social-whatsapp i {
+    font-size: 20px;
+}
+
 
 .social-outline {
     border-color: var(--green-600);
@@ -3492,6 +3662,24 @@ p:last-child {
 .footer-social svg {
     width: 18px;
     height: 18px;
+}
+
+
+/* ============================================================
+   WHATSAPP FOOTER LINK
+   ADDED — EXISTING FOOTER STYLES PRESERVED
+============================================================ */
+
+.footer-social .footer-whatsapp {
+    color: var(--whatsapp);
+}
+
+.footer-social .footer-whatsapp:hover {
+    background: var(--whatsapp);
+
+    border-color: var(--whatsapp);
+
+    color: var(--white);
 }
 
 
@@ -4072,6 +4260,21 @@ p:last-child {
         font-size: 0.8rem;
     }
 
+    /* --------------------------------------------------------
+       WHATSAPP MOBILE
+       ADDED — EXISTING MOBILE STYLES PRESERVED
+    -------------------------------------------------------- */
+
+    .contact-whatsapp .contact-item-value i,
+    .contact-whatsapp .contact-item-value .fa-whatsapp {
+        width: 19px;
+        height: 19px;
+
+        flex-basis: 19px;
+
+        font-size: 19px;
+    }
+
     .contact-cta {
         grid-template-columns: 1fr;
 
@@ -4290,6 +4493,21 @@ p:last-child {
 
     .contact-item-label {
         font-size: 0.64rem;
+    }
+
+    /* --------------------------------------------------------
+       WHATSAPP SMALL MOBILE
+       ADDED — EXISTING SMALL MOBILE STYLES PRESERVED
+    -------------------------------------------------------- */
+
+    .contact-whatsapp .contact-item-value i,
+    .contact-whatsapp .contact-item-value .fa-whatsapp {
+        width: 18px;
+        height: 18px;
+
+        flex-basis: 18px;
+
+        font-size: 18px;
     }
 
     .contact-cta {
