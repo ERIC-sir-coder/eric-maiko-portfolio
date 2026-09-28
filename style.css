@@ -1,25 +1,37 @@
 /* ============================================================
    ERIC MAIKO PORTFOLIO
-   Accessible Professional Design
+   PROFESSIONAL RESPONSIVE DESIGN SYSTEM
 
-   Section Flow:
+   Responsive targets:
+   320px → 430px   Small / modern phones
+   431px → 650px   Large phones
+   651px → 900px   Tablets
+   901px → 1050px  Large tablets / small laptops
+   1051px → 1279px Laptops
+   1280px → 1439px Large laptops
+   1440px+          Desktop / large desktop
+
+   Design flow:
    NAVY → ORANGE → GREEN → BLUE → BLUE → ORANGE
    → GREEN → BLUE → ORANGE → GREEN → NAVY
 
-   Design Goals:
+   Design goals:
    - Professional
    - Accessible
-   - Responsive
-   - Clean typography
+   - Mobile-first
+   - Fully responsive
    - Strong visual hierarchy
-   - Mobile-first behavior
-   - Clear contact information
-   - Small inline social/contact icons
+   - Comfortable touch targets
+   - Clean typography
+   - Controlled content width
+   - No horizontal overflow
+   - Consistent spacing
+   - Fast visual scanning
 ============================================================ */
 
 
 /* ============================================================
-   VARIABLES
+   1. DESIGN TOKENS
 ============================================================ */
 
 :root {
@@ -80,9 +92,9 @@
     --linkedin: #0a66c2;
     --github: #24292f;
 
+
     /* --------------------------------------------------------
        WHATSAPP
-       ADDED — EXISTING VARIABLES PRESERVED
     -------------------------------------------------------- */
 
     --whatsapp: #25d366;
@@ -96,9 +108,11 @@
 
     --white: #ffffff;
     --off-white: #f8fafc;
+
     --text: #172033;
     --muted: #526174;
     --light-text: #d8e2ee;
+
     --border: #dbe3ec;
     --border-dark: #31465f;
 
@@ -106,6 +120,9 @@
     /* --------------------------------------------------------
        SHADOWS
     -------------------------------------------------------- */
+
+    --shadow-xs:
+        0 2px 8px rgba(10, 31, 58, 0.05);
 
     --shadow-sm:
         0 4px 14px rgba(10, 31, 58, 0.08);
@@ -116,11 +133,15 @@
     --shadow-lg:
         0 20px 50px rgba(10, 31, 58, 0.16);
 
+    --shadow-xl:
+        0 30px 75px rgba(10, 31, 58, 0.20);
+
 
     /* --------------------------------------------------------
        RADII
     -------------------------------------------------------- */
 
+    --radius-xs: 6px;
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
@@ -132,12 +153,33 @@
     -------------------------------------------------------- */
 
     --container: 1180px;
-    --section-padding: 100px;
+
+    --section-padding: clamp(
+        72px,
+        7vw,
+        108px
+    );
+
+    --page-padding: 24px;
+
+
+    /* --------------------------------------------------------
+       TRANSITIONS
+    -------------------------------------------------------- */
+
+    --transition-fast:
+        0.18s ease;
+
+    --transition:
+        0.24s ease;
+
+    --transition-slow:
+        0.35s ease;
 }
 
 
 /* ============================================================
-   RESET
+   2. RESET
 ============================================================ */
 
 *,
@@ -148,11 +190,16 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+
+    scroll-padding-top: 88px;
+
+    overflow-x: hidden;
 }
 
 body {
     margin: 0;
+
+    min-width: 320px;
 
     font-family:
         "Atkinson Hyperlegible",
@@ -160,17 +207,31 @@ body {
         sans-serif;
 
     font-size: 1.05rem;
+
     line-height: 1.6;
 
     color: var(--text);
+
     background: var(--white);
 
     text-rendering: optimizeLegibility;
+
     -webkit-font-smoothing: antialiased;
+
+    overflow-x: hidden;
 }
 
 img {
     display: block;
+
+    max-width: 100%;
+
+    height: auto;
+}
+
+svg {
+    display: block;
+
     max-width: 100%;
 }
 
@@ -205,12 +266,13 @@ p:last-child {
 
 ::selection {
     background: var(--orange-500);
+
     color: var(--white);
 }
 
 
 /* ============================================================
-   ACCESSIBILITY
+   3. ACCESSIBILITY
 ============================================================ */
 
 .skip-link {
@@ -226,14 +288,17 @@ p:last-child {
     border-radius: var(--radius-sm);
 
     background: var(--navy-900);
+
     color: var(--white);
 
-    font-weight: 700;
+    font-weight: 800;
+
+    text-decoration: none;
 
     transform: translateY(-150%);
 
     transition:
-        transform 0.2s ease;
+        transform var(--transition-fast);
 }
 
 .skip-link:focus {
@@ -241,20 +306,23 @@ p:last-child {
 }
 
 :focus-visible {
-    outline: 4px solid var(--orange-500);
+    outline:
+        4px solid
+        var(--orange-500);
+
     outline-offset: 3px;
 }
 
 
 /* ============================================================
-   GLOBAL UTILITIES
+   4. GLOBAL LAYOUT
 ============================================================ */
 
 .container {
     width:
         min(
             var(--container),
-            calc(100% - 48px)
+            calc(100% - (var(--page-padding) * 2))
         );
 
     margin-inline: auto;
@@ -271,9 +339,9 @@ p:last-child {
         minmax(0, 0.8fr)
         minmax(0, 1.2fr);
 
-    gap: 60px;
+    gap: clamp(30px, 5vw, 60px);
 
-    margin-bottom: 60px;
+    margin-bottom: clamp(40px, 5vw, 60px);
 }
 
 .section-intro.centered {
@@ -291,8 +359,11 @@ p:last-child {
 
     margin-bottom: 10px;
 
-    font-size: 0.88rem;
-    font-weight: 800;
+    color: var(--blue-700);
+
+    font-size: 0.82rem;
+
+    font-weight: 900;
 
     letter-spacing: 0.12em;
 
@@ -302,14 +373,16 @@ p:last-child {
 .section-intro h2 {
     margin-bottom: 0;
 
+    color: var(--navy-900);
+
     font-size:
         clamp(
-            2.3rem,
+            2.15rem,
             5vw,
             3.5rem
         );
 
-    line-height: 1.05;
+    line-height: 1.04;
 
     letter-spacing: -0.025em;
 }
@@ -321,7 +394,13 @@ p:last-child {
 
     color: var(--muted);
 
-    font-size: 1.12rem;
+    font-size:
+        clamp(
+            1rem,
+            1.5vw,
+            1.12rem
+        );
+
     line-height: 1.75;
 }
 
@@ -330,13 +409,19 @@ p:last-child {
 }
 
 .large-paragraph {
-    font-size: 1.2rem;
+    font-size:
+        clamp(
+            1.08rem,
+            1.8vw,
+            1.2rem
+        );
+
     line-height: 1.8;
 }
 
 
 /* ============================================================
-   HEADER
+   5. HEADER
 ============================================================ */
 
 .site-header {
@@ -363,6 +448,7 @@ p:last-child {
         rgba(6, 20, 38, 0.18);
 
     backdrop-filter: blur(14px);
+
     -webkit-backdrop-filter: blur(14px);
 }
 
@@ -372,9 +458,10 @@ p:last-child {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
-    gap: 30px;
+    gap: 24px;
 }
 
 .brand {
@@ -384,11 +471,11 @@ p:last-child {
 
     gap: 12px;
 
+    flex-shrink: 0;
+
     color: var(--white);
 
     text-decoration: none;
-
-    flex-shrink: 0;
 }
 
 .brand-logo {
@@ -396,7 +483,10 @@ p:last-child {
     height: 48px;
 
     display: grid;
+
     place-items: center;
+
+    flex: 0 0 48px;
 
     border-radius: 12px;
 
@@ -410,6 +500,7 @@ p:last-child {
     color: var(--white);
 
     font-size: 0.95rem;
+
     font-weight: 900;
 
     letter-spacing: 0.03em;
@@ -428,6 +519,8 @@ p:last-child {
 
     flex-direction: column;
 
+    min-width: 0;
+
     line-height: 1.15;
 }
 
@@ -435,6 +528,7 @@ p:last-child {
     color: var(--white);
 
     font-size: 1.12rem;
+
     font-weight: 800;
 }
 
@@ -443,7 +537,8 @@ p:last-child {
 
     color: #b9d7f5;
 
-    font-size: 0.86rem;
+    font-size: 0.84rem;
+
     font-weight: 600;
 }
 
@@ -452,23 +547,34 @@ p:last-child {
 
     align-items: center;
 
-    gap: 24px;
+    justify-content: flex-end;
+
+    gap: clamp(12px, 1.7vw, 24px);
 }
 
 .main-navigation > a {
     position: relative;
 
-    padding-block: 10px;
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 42px;
+
+    padding-block: 8px;
 
     color: #e7f0fa;
 
-    font-size: 0.96rem;
+    font-size: 0.94rem;
+
     font-weight: 700;
 
     text-decoration: none;
 
+    white-space: nowrap;
+
     transition:
-        color 0.2s ease;
+        color var(--transition-fast);
 }
 
 .main-navigation > a::after {
@@ -478,7 +584,7 @@ p:last-child {
 
     left: 0;
     right: 0;
-    bottom: 3px;
+    bottom: 2px;
 
     height: 2px;
 
@@ -491,7 +597,7 @@ p:last-child {
     transform-origin: center;
 
     transition:
-        transform 0.2s ease;
+        transform var(--transition-fast);
 }
 
 .main-navigation > a:hover {
@@ -508,11 +614,15 @@ p:last-child {
 }
 
 .main-navigation .nav-button {
-    padding: 10px 17px;
+    min-height: 44px;
+
+    padding:
+        9px 16px;
 
     border-radius: var(--radius-sm);
 
     background: var(--orange-500);
+
     color: var(--white);
 
     box-shadow:
@@ -526,6 +636,7 @@ p:last-child {
 
 .main-navigation .nav-button:hover {
     background: var(--green-600);
+
     color: var(--white);
 
     transform: translateY(-1px);
@@ -536,6 +647,8 @@ p:last-child {
 
     width: 46px;
     height: 44px;
+
+    flex: 0 0 46px;
 
     padding: 9px 10px;
 
@@ -571,36 +684,43 @@ p:last-child {
 
 
 /* ============================================================
-   BUTTONS
+   6. BUTTON SYSTEM
 ============================================================ */
 
 .button {
-    min-height: 48px;
+    min-height: 50px;
 
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 9px;
 
-    padding: 10px 18px;
+    padding:
+        10px 18px;
 
     border:
-        2px solid transparent;
+        2px solid
+        transparent;
 
     border-radius: 10px;
 
-    font-weight: 700;
+    font-weight: 800;
+
+    line-height: 1.2;
 
     text-decoration: none;
 
+    text-align: center;
+
     transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        box-shadow var(--transition);
 }
 
 .button:hover {
@@ -609,11 +729,12 @@ p:last-child {
 
 .button-primary {
     background: var(--orange-600);
+
     color: var(--white);
 
     box-shadow:
         0 8px 20px
-        rgba(234, 88, 12, 0.2);
+        rgba(234, 88, 12, 0.20);
 }
 
 .button-primary:hover {
@@ -629,11 +750,13 @@ p:last-child {
         rgba(255, 255, 255, 0.7);
 
     background: transparent;
+
     color: var(--white);
 }
 
 .button-outline:hover {
     background: var(--white);
+
     color: var(--navy-900);
 }
 
@@ -646,8 +769,7 @@ p:last-child {
 
 
 /* ============================================================
-   WHATSAPP HERO CTA
-   ADDED — EXISTING BUTTON STYLES PRESERVED
+   7. WHATSAPP HERO CTA
 ============================================================ */
 
 .button-whatsapp {
@@ -680,7 +802,7 @@ p:last-child {
 
 
 /* ============================================================
-   HERO
+   8. HERO
 ============================================================ */
 
 .hero {
@@ -704,8 +826,8 @@ p:last-child {
 
     position: absolute;
 
-    width: 420px;
-    height: 420px;
+    width: clamp(280px, 32vw, 420px);
+    height: clamp(280px, 32vw, 420px);
 
     right: -140px;
     top: -180px;
@@ -744,23 +866,26 @@ p:last-child {
 
     z-index: 1;
 
-    min-height: 720px;
+    min-height: 700px;
 
     display: grid;
 
     grid-template-columns:
         minmax(0, 1.15fr)
-        minmax(340px, 0.85fr);
+        minmax(320px, 0.85fr);
 
     align-items: center;
 
-    gap: 70px;
+    gap: clamp(40px, 6vw, 80px);
 
-    padding-block: 90px;
+    padding-block:
+        clamp(70px, 8vw, 100px);
 }
 
 .hero-content {
     max-width: 760px;
+
+    min-width: 0;
 }
 
 .eyebrow,
@@ -775,8 +900,9 @@ p:last-child {
 
     color: #bfdbfe;
 
-    font-size: 0.92rem;
-    font-weight: 800;
+    font-size: 0.88rem;
+
+    font-weight: 900;
 
     letter-spacing: 0.12em;
 
@@ -786,6 +912,8 @@ p:last-child {
 .eyebrow-dot {
     width: 9px;
     height: 9px;
+
+    flex: 0 0 9px;
 
     border-radius: 50%;
 
@@ -802,6 +930,8 @@ p:last-child {
     width: 32px;
     height: 3px;
 
+    flex: 0 0 32px;
+
     border-radius: 3px;
 
     background: var(--orange-500);
@@ -814,14 +944,16 @@ p:last-child {
 
     font-size:
         clamp(
-            3.2rem,
-            7vw,
+            3rem,
+            6.5vw,
             5.8rem
         );
 
     line-height: 0.98;
 
     letter-spacing: -0.035em;
+
+    overflow-wrap: anywhere;
 }
 
 .hero h1 span {
@@ -835,7 +967,12 @@ p:last-child {
 
     color: #f1f5f9;
 
-    font-size: 1.4rem;
+    font-size:
+        clamp(
+            1.18rem,
+            2vw,
+            1.4rem
+        );
 
     line-height: 1.55;
 }
@@ -848,6 +985,8 @@ p:last-child {
     color: var(--light-text);
 
     font-size: 1.05rem;
+
+    line-height: 1.7;
 }
 
 .hero-actions {
@@ -890,13 +1029,15 @@ p:last-child {
 
 
 /* ============================================================
-   HERO PROFILE
+   9. HERO PROFILE
 ============================================================ */
 
 .hero-profile {
     display: flex;
 
     justify-content: flex-end;
+
+    min-width: 0;
 }
 
 .profile-card {
@@ -918,12 +1059,15 @@ p:last-child {
         rgba(0, 0, 0, 0.22);
 
     backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .profile-top {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 12px;
@@ -934,7 +1078,8 @@ p:last-child {
 
     color: #dbeafe;
 
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+
     font-weight: 800;
 
     letter-spacing: 0.08em;
@@ -970,7 +1115,8 @@ p:last-child {
 
 .profile-information,
 .profile-details {
-    padding: 20px 5px 4px;
+    padding:
+        20px 5px 4px;
 }
 
 .profile-information h2 {
@@ -1017,7 +1163,7 @@ p:last-child {
 
 
 /* ============================================================
-   PROFESSIONAL STRIP
+   10. PROFESSIONAL STRIP
 ============================================================ */
 
 .professional-strip {
@@ -1032,13 +1178,15 @@ p:last-child {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 25px;
 }
 
 .professional-strip span {
-    font-size: 0.96rem;
+    font-size: 0.94rem;
+
     font-weight: 800;
 
     letter-spacing: 0.04em;
@@ -1046,7 +1194,7 @@ p:last-child {
 
 
 /* ============================================================
-   ABOUT
+   11. ABOUT
 ============================================================ */
 
 #about {
@@ -1070,7 +1218,7 @@ p:last-child {
         minmax(0, 1.15fr)
         minmax(300px, 0.85fr);
 
-    gap: 60px;
+    gap: clamp(35px, 6vw, 60px);
 }
 
 .about-main .large-paragraph {
@@ -1082,7 +1230,7 @@ p:last-child {
 }
 
 .about-highlight {
-    padding: 30px;
+    padding: clamp(24px, 4vw, 30px);
 
     border:
         1px solid
@@ -1109,6 +1257,7 @@ p:last-child {
     border-radius: 14px;
 
     background: var(--green-100);
+
     color: var(--green-700);
 
     font-weight: 800;
@@ -1179,7 +1328,7 @@ p:last-child {
 
 
 /* ============================================================
-   EXPERTISE
+   12. EXPERTISE
 ============================================================ */
 
 #expertise {
@@ -1200,7 +1349,7 @@ p:last-child {
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4, minmax(0, 1fr));
 
     gap: 18px;
 }
@@ -1225,9 +1374,9 @@ p:last-child {
     box-shadow: var(--shadow-sm);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
 }
 
 .expertise-card:hover {
@@ -1244,6 +1393,7 @@ p:last-child {
     color: var(--blue-700);
 
     font-size: 0.85rem;
+
     font-weight: 800;
 
     letter-spacing: 0.08em;
@@ -1262,6 +1412,7 @@ p:last-child {
     border-radius: 12px;
 
     background: var(--blue-100);
+
     color: var(--blue-700);
 }
 
@@ -1273,9 +1424,11 @@ p:last-child {
 .expertise-card h3 {
     margin-bottom: 10px;
 
+    color: var(--navy-900);
+
     font-size: 1.3rem;
 
-    color: var(--navy-900);
+    line-height: 1.2;
 }
 
 .expertise-card p {
@@ -1304,6 +1457,7 @@ p:last-child {
     border-radius: 6px;
 
     background: var(--blue-50);
+
     color: var(--blue-700);
 
     font-size: 0.78rem;
@@ -1315,7 +1469,8 @@ p:last-child {
     display: grid;
 
     grid-template-columns:
-        auto 1fr;
+        auto
+        minmax(0, 1fr);
 
     gap: 25px;
 
@@ -1373,7 +1528,7 @@ p:last-child {
 
 
 /* ============================================================
-   PROJECTS
+   13. PROJECTS
 ============================================================ */
 
 .project-section,
@@ -1395,7 +1550,7 @@ p:last-child {
 
 
 /* ============================================================
-   FEATURED PROJECT
+   14. FEATURED PROJECT
 ============================================================ */
 
 .featured-project {
@@ -1403,9 +1558,9 @@ p:last-child {
 
     flex-direction: column;
 
-    gap: 42px;
+    gap: clamp(28px, 4vw, 42px);
 
-    padding: 42px;
+    padding: clamp(22px, 4vw, 42px);
 
     border:
         1px solid
@@ -1427,12 +1582,15 @@ p:last-child {
 
 .project-content {
     width: 100%;
+
+    min-width: 0;
 }
 
 .project-label-row {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 15px;
@@ -1451,11 +1609,14 @@ p:last-child {
 }
 
 .project-year {
+    flex-shrink: 0;
+
     padding: 5px 10px;
 
     border-radius: 7px;
 
     background: var(--green-100);
+
     color: var(--green-700);
 
     font-size: 0.88rem;
@@ -1468,7 +1629,12 @@ p:last-child {
 
     color: var(--navy-900);
 
-    font-size: 2.5rem;
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            2.5rem
+        );
 
     line-height: 1.1;
 }
@@ -1480,7 +1646,12 @@ p:last-child {
 
     color: var(--text);
 
-    font-size: 1.18rem;
+    font-size:
+        clamp(
+            1.05rem,
+            1.7vw,
+            1.18rem
+        );
 
     line-height: 1.7;
 }
@@ -1531,14 +1702,14 @@ p:last-child {
 
 
 /* ============================================================
-   PROJECT MODULES
+   15. PROJECT MODULES
 ============================================================ */
 
 .project-modules {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3, minmax(0, 1fr));
 
     gap: 12px;
 
@@ -1557,9 +1728,9 @@ p:last-child {
     background: #eff6ff;
 
     transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
 .project-modules > div:hover {
@@ -1592,7 +1763,7 @@ p:last-child {
 
 
 /* ============================================================
-   PROJECT TECHNOLOGY STACK
+   16. PROJECT TECHNOLOGY STACK
 ============================================================ */
 
 .project-stack {
@@ -1626,7 +1797,7 @@ p:last-child {
 
 
 /* ============================================================
-   PROJECT CALL TO ACTION
+   17. PROJECT CTA
 ============================================================ */
 
 .project-links {
@@ -1645,6 +1816,7 @@ p:last-child {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 10px;
@@ -1652,7 +1824,8 @@ p:last-child {
     padding: 11px 20px;
 
     border:
-        2px solid transparent;
+        2px solid
+        transparent;
 
     border-radius: 10px;
 
@@ -1660,14 +1833,16 @@ p:last-child {
 
     font-weight: 700;
 
+    line-height: 1.2;
+
     text-decoration: none;
 
     transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        color 0.2s ease;
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition),
+        color var(--transition);
 }
 
 .project-cta:hover {
@@ -1684,6 +1859,7 @@ p:last-child {
 
 .project-cta-primary {
     background: var(--blue-600);
+
     color: var(--white);
 
     box-shadow:
@@ -1719,7 +1895,7 @@ p:last-child {
     flex: 0 0 auto;
 
     transition:
-        transform 0.2s ease;
+        transform var(--transition-fast);
 }
 
 .project-cta-primary:hover .project-cta-icon {
@@ -1733,7 +1909,7 @@ p:last-child {
 
 
 /* ============================================================
-   BUSINESSCONNECT IMAGE AREA
+   18. BUSINESSCONNECT IMAGE
 ============================================================ */
 
 .project-image-area {
@@ -1784,7 +1960,7 @@ p:last-child {
     width: 11px;
     height: 11px;
 
-    flex-shrink: 0;
+    flex: 0 0 11px;
 
     border-radius: 50%;
 
@@ -1795,6 +1971,7 @@ p:last-child {
     display: block;
 
     width: 100%;
+
     max-width: none;
 
     height: auto;
@@ -1807,7 +1984,7 @@ p:last-child {
 
 
 /* ============================================================
-   MASTERCLASSES
+   19. MASTERCLASSES
 ============================================================ */
 
 #masterclasses {
@@ -1828,7 +2005,7 @@ p:last-child {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3, minmax(0, 1fr));
 
     gap: 20px;
 }
@@ -1848,8 +2025,8 @@ p:last-child {
     box-shadow: var(--shadow-sm);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform var(--transition),
+        box-shadow var(--transition);
 }
 
 .masterclass-card:hover,
@@ -1877,7 +2054,7 @@ p:last-child {
 
 
 /* ============================================================
-   EXPERIENCE
+   20. EXPERIENCE
 ============================================================ */
 
 #experience {
@@ -1923,7 +2100,8 @@ p:last-child {
     display: grid;
 
     grid-template-columns:
-        55px 1fr;
+        55px
+        minmax(0, 1fr);
 
     gap: 25px;
 }
@@ -2027,7 +2205,7 @@ p:last-child {
 
 
 /* ============================================================
-   EDUCATION
+   21. EDUCATION
 ============================================================ */
 
 #education {
@@ -2048,7 +2226,7 @@ p:last-child {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3, minmax(0, 1fr));
 
     gap: 20px;
 }
@@ -2067,8 +2245,8 @@ p:last-child {
     box-shadow: var(--shadow-sm);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform var(--transition),
+        box-shadow var(--transition);
 }
 
 .education-card:hover {
@@ -2102,7 +2280,7 @@ p:last-child {
 
 
 /* ============================================================
-   CAREER
+   22. CAREER
 ============================================================ */
 
 #career,
@@ -2128,7 +2306,7 @@ p:last-child {
         minmax(0, 1fr)
         minmax(300px, 0.8fr);
 
-    gap: 65px;
+    gap: clamp(35px, 6vw, 65px);
 
     align-items: start;
 }
@@ -2244,8 +2422,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT
-   GREEN BASE
+   23. CONTACT BASE
 ============================================================ */
 
 #contact {
@@ -2268,7 +2445,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT HEADER
+   24. CONTACT HEADER
 ============================================================ */
 
 .contact-header {
@@ -2278,7 +2455,7 @@ p:last-child {
         minmax(0, 0.9fr)
         minmax(0, 1.1fr);
 
-    gap: 60px;
+    gap: clamp(30px, 5vw, 60px);
 
     align-items: end;
 
@@ -2292,7 +2469,7 @@ p:last-child {
 
     font-size:
         clamp(
-            2.7rem,
+            2.4rem,
             5vw,
             4.2rem
         );
@@ -2309,14 +2486,19 @@ p:last-child {
 
     color: var(--muted);
 
-    font-size: 1.25rem;
+    font-size:
+        clamp(
+            1.05rem,
+            2vw,
+            1.25rem
+        );
 
     line-height: 1.75;
 }
 
 
 /* ============================================================
-   CONTACT AVAILABILITY
+   25. CONTACT AVAILABILITY
 ============================================================ */
 
 .contact-availability-wide {
@@ -2325,6 +2507,7 @@ p:last-child {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 25px;
@@ -2351,6 +2534,8 @@ p:last-child {
     align-items: flex-start;
 
     gap: 14px;
+
+    min-width: 0;
 }
 
 .contact-status .availability-indicator {
@@ -2397,8 +2582,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT MAIN
-   TWO DISTINCT COLOURED PANELS
+   26. CONTACT MAIN
 ============================================================ */
 
 .contact-main {
@@ -2423,8 +2607,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT LEFT PANEL
-   GREEN
+   27. CONTACT INTRODUCTION
 ============================================================ */
 
 .contact-introduction {
@@ -2438,7 +2621,7 @@ p:last-child {
 
     justify-content: center;
 
-    padding: 48px;
+    padding: clamp(32px, 5vw, 48px);
 
     overflow: hidden;
 
@@ -2522,7 +2705,7 @@ p:last-child {
 
     font-size:
         clamp(
-            2.1rem,
+            2rem,
             4vw,
             3.2rem
         );
@@ -2550,7 +2733,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT FOCUS
+   28. CONTACT FOCUS
 ============================================================ */
 
 .contact-focus {
@@ -2570,6 +2753,8 @@ p:last-child {
         rgba(255, 255, 255, 0.11);
 
     backdrop-filter: blur(6px);
+
+    -webkit-backdrop-filter: blur(6px);
 }
 
 .contact-focus-label {
@@ -2608,14 +2793,13 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT RIGHT PANEL
-   CONTRASTING BLUE
+   29. CONTACT DETAILS
 ============================================================ */
 
 .contact-details {
     min-width: 0;
 
-    padding: 42px;
+    padding: clamp(28px, 4vw, 42px);
 
     border: 0;
 
@@ -2641,7 +2825,7 @@ p:last-child {
 
     font-size:
         clamp(
-            1.8rem,
+            1.75rem,
             3vw,
             2.45rem
         );
@@ -2651,7 +2835,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT LIST
+   30. CONTACT LIST
 ============================================================ */
 
 .contact-list {
@@ -2662,8 +2846,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT ITEM
-   SMALL INLINE ICON DESIGN
+   31. CONTACT ITEM
 ============================================================ */
 
 .contact-item {
@@ -2681,6 +2864,8 @@ p:last-child {
     gap: 14px;
 
     min-width: 0;
+
+    min-height: 62px;
 
     padding: 17px 18px;
 
@@ -2702,10 +2887,10 @@ p:last-child {
         rgba(10, 31, 58, 0.06);
 
     transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
 }
 
 .contact-item:hover {
@@ -2726,11 +2911,6 @@ p:last-child {
     outline-offset: 3px;
 }
 
-
-/* ============================================================
-   CONTACT ITEM LABEL
-============================================================ */
-
 .contact-item-label {
     color: var(--muted);
 
@@ -2742,11 +2922,6 @@ p:last-child {
 
     text-transform: uppercase;
 }
-
-
-/* ============================================================
-   CONTACT ITEM VALUE
-============================================================ */
 
 .contact-item-value {
     min-width: 0;
@@ -2772,11 +2947,6 @@ p:last-child {
     word-break: break-word;
 }
 
-
-/* ============================================================
-   SMALL INLINE CONTACT ICONS
-============================================================ */
-
 .contact-item-value img,
 .contact-item-value i {
     width: 21px;
@@ -2787,6 +2957,7 @@ p:last-child {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     object-fit: contain;
@@ -2798,7 +2969,7 @@ p:last-child {
 
 
 /* ============================================================
-   GMAIL SVG
+   32. CONTACT BRAND ICONS
 ============================================================ */
 
 .contact-email .contact-item-value img {
@@ -2808,11 +2979,6 @@ p:last-child {
     flex: 0 0 21px;
 }
 
-
-/* ============================================================
-   TRUECALLER SVG
-============================================================ */
-
 .contact-phone .contact-item-value img {
     width: 21px;
     height: 21px;
@@ -2820,28 +2986,41 @@ p:last-child {
     flex: 0 0 21px;
 }
 
-
-/* ============================================================
-   LINKEDIN ICON
-============================================================ */
+.contact-linkedin {
+    border-left:
+        4px solid
+        var(--linkedin);
+}
 
 .contact-linkedin .contact-item-value i {
     color: var(--linkedin);
 }
 
-
-/* ============================================================
-   GITHUB ICON
-============================================================ */
+.contact-github {
+    border-left:
+        4px solid
+        var(--github);
+}
 
 .contact-github .contact-item-value i {
     color: var(--github);
 }
 
+.contact-email {
+    border-left:
+        4px solid
+        #ea4335;
+}
+
+.contact-phone {
+    border-left:
+        4px solid
+        var(--green-600);
+}
+
 
 /* ============================================================
-   WHATSAPP DIRECT CONTACT
-   ADDED — EXISTING CONTACT STYLES PRESERVED
+   33. WHATSAPP CONTACT
 ============================================================ */
 
 .contact-whatsapp {
@@ -2860,6 +3039,7 @@ p:last-child {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     color: var(--whatsapp);
@@ -2902,13 +3082,14 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT ARROW
+   34. CONTACT ARROW
 ============================================================ */
 
 .contact-item-arrow {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     width: 28px;
@@ -2923,8 +3104,8 @@ p:last-child {
     font-size: 0.9rem;
 
     transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+        transform var(--transition-fast),
+        background var(--transition-fast);
 }
 
 .contact-item:hover .contact-item-arrow {
@@ -2936,37 +3117,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT BRAND ACCENTS
-============================================================ */
-
-.contact-email {
-    border-left:
-        4px solid
-        #ea4335;
-}
-
-.contact-phone {
-    border-left:
-        4px solid
-        var(--green-600);
-}
-
-.contact-linkedin {
-    border-left:
-        4px solid
-        var(--linkedin);
-}
-
-.contact-github {
-    border-left:
-        4px solid
-        var(--github);
-}
-
-
-/* ============================================================
-   CONTACT CTA
-   ORANGE
+   35. CONTACT CTA
 ============================================================ */
 
 .contact-cta {
@@ -2984,7 +3135,9 @@ p:last-child {
 
     margin-top: 28px;
 
-    padding: 32px 36px;
+    padding:
+        clamp(25px, 4vw, 32px)
+        clamp(22px, 4vw, 36px);
 
     overflow: hidden;
 
@@ -3028,6 +3181,8 @@ p:last-child {
     position: relative;
 
     z-index: 1;
+
+    min-width: 0;
 }
 
 .contact-cta-label {
@@ -3051,7 +3206,7 @@ p:last-child {
 
     font-size:
         clamp(
-            1.65rem,
+            1.6rem,
             3vw,
             2.3rem
         );
@@ -3087,7 +3242,7 @@ p:last-child {
 
 
 /* ============================================================
-   CONTACT CTA BUTTONS
+   36. CONTACT CTA BUTTONS
 ============================================================ */
 
 .contact-button {
@@ -3096,14 +3251,17 @@ p:last-child {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 8px;
 
-    padding: 10px 17px;
+    padding:
+        10px 17px;
 
     border:
-        2px solid transparent;
+        2px solid
+        transparent;
 
     border-radius: 10px;
 
@@ -3111,14 +3269,16 @@ p:last-child {
 
     font-weight: 800;
 
+    line-height: 1.2;
+
     text-decoration: none;
 
     transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        box-shadow var(--transition);
 }
 
 .contact-button:hover {
@@ -3176,8 +3336,7 @@ p:last-child {
 
 
 /* ============================================================
-   WHATSAPP CONTACT CTA
-   ADDED — EXISTING CONTACT BUTTONS PRESERVED
+   37. WHATSAPP CONTACT CTA
 ============================================================ */
 
 .contact-button-whatsapp {
@@ -3210,7 +3369,7 @@ p:last-child {
 
 
 /* ============================================================
-   SOCIAL PROFILE BUTTONS
+   38. SOCIAL PROFILE BUTTONS
 ============================================================ */
 
 .social-profiles {
@@ -3254,10 +3413,12 @@ p:last-child {
 
     gap: 10px;
 
-    padding: 10px 15px;
+    padding:
+        10px 15px;
 
     border:
-        2px solid transparent;
+        2px solid
+        transparent;
 
     border-radius: 11px;
 
@@ -3268,11 +3429,11 @@ p:last-child {
     font-weight: 800;
 
     transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        color 0.2s ease;
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition),
+        color var(--transition);
 }
 
 .social-profile-button:hover {
@@ -3346,12 +3507,6 @@ p:last-child {
         rgba(36, 41, 47, 0.24);
 }
 
-
-/* ============================================================
-   WHATSAPP SOCIAL PROFILE
-   ADDED — EXISTING SOCIAL STYLES PRESERVED
-============================================================ */
-
 .social-whatsapp {
     background: var(--whatsapp);
 
@@ -3376,7 +3531,6 @@ p:last-child {
     font-size: 20px;
 }
 
-
 .social-outline {
     border-color: var(--green-600);
 
@@ -3393,7 +3547,7 @@ p:last-child {
 
 
 /* ============================================================
-   EXTERNAL LINK LABEL
+   39. EXTERNAL LINK LABEL
 ============================================================ */
 
 .external-link-label {
@@ -3419,7 +3573,7 @@ p:last-child {
 
 
 /* ============================================================
-   SAFE LINK NOTICE
+   40. SAFE LINK NOTICE
 ============================================================ */
 
 .safe-link-notice {
@@ -3431,7 +3585,8 @@ p:last-child {
 
     margin-top: 14px;
 
-    padding: 12px 14px;
+    padding:
+        12px 14px;
 
     border:
         1px solid
@@ -3464,7 +3619,7 @@ p:last-child {
 
 
 /* ============================================================
-   FOOTER
+   41. FOOTER
 ============================================================ */
 
 .site-footer {
@@ -3561,7 +3716,7 @@ p:last-child {
     text-decoration: none;
 
     transition:
-        color 0.2s ease;
+        color var(--transition-fast);
 }
 
 .footer-links a:hover {
@@ -3588,6 +3743,7 @@ p:last-child {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -3599,7 +3755,7 @@ p:last-child {
 
 
 /* ============================================================
-   FOOTER SOCIAL LINKS
+   42. FOOTER SOCIAL
 ============================================================ */
 
 .footer-social {
@@ -3619,9 +3775,11 @@ p:last-child {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
-    padding: 8px 12px;
+    padding:
+        8px 12px;
 
     border:
         1px solid
@@ -3641,10 +3799,10 @@ p:last-child {
     font-weight: 700;
 
     transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        color var(--transition);
 }
 
 .footer-social a:hover {
@@ -3664,12 +3822,6 @@ p:last-child {
     height: 18px;
 }
 
-
-/* ============================================================
-   WHATSAPP FOOTER LINK
-   ADDED — EXISTING FOOTER STYLES PRESERVED
-============================================================ */
-
 .footer-social .footer-whatsapp {
     color: var(--whatsapp);
 }
@@ -3684,17 +3836,55 @@ p:last-child {
 
 
 /* ============================================================
-   LARGE TABLETS
+   43. LARGE DESKTOP
 ============================================================ */
 
-@media (max-width: 1050px) {
+@media (min-width: 1440px) {
+
+    :root {
+        --container: 1220px;
+    }
+
+    .header-inner {
+        min-height: 86px;
+    }
+
+    .hero-grid {
+        min-height: 760px;
+
+        gap: 90px;
+    }
+
+    .hero h1 {
+        max-width: 900px;
+    }
+
+    .profile-card {
+        width: 450px;
+    }
+
+    .featured-project {
+        padding: 48px;
+    }
+}
+
+
+/* ============================================================
+   44. LAPTOP / LARGE TABLET
+============================================================ */
+
+@media (max-width: 1180px) {
+
+    :root {
+        --page-padding: 22px;
+    }
 
     .main-navigation {
-        gap: 16px;
+        gap: 14px;
     }
 
     .main-navigation > a {
-        font-size: 0.91rem;
+        font-size: 0.9rem;
     }
 
     .hero-grid {
@@ -3703,11 +3893,50 @@ p:last-child {
 
     .expertise-grid {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+/* ============================================================
+   45. LARGE TABLET / SMALL LAPTOP
+============================================================ */
+
+@media (max-width: 1050px) {
+
+    .main-navigation {
+        gap: 12px;
     }
 
-    .featured-project {
-        gap: 35px;
+    .main-navigation > a {
+        font-size: 0.87rem;
+    }
+
+    .main-navigation .nav-button {
+        padding-inline: 13px;
+    }
+
+    .hero-grid {
+        gap: 38px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(
+                3rem,
+                6vw,
+                4.7rem
+            );
+    }
+
+    .expertise-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .project-modules {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
     }
 
     .contact-introduction {
@@ -3719,8 +3948,7 @@ p:last-child {
     }
 
     .contact-cta {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         gap: 20px;
     }
@@ -3732,10 +3960,22 @@ p:last-child {
 
 
 /* ============================================================
-   TABLET
+   46. TABLET
 ============================================================ */
 
 @media (max-width: 900px) {
+
+    :root {
+        --page-padding: 20px;
+    }
+
+    /* --------------------------------------------------------
+       HEADER
+    -------------------------------------------------------- */
+
+    .header-inner {
+        min-height: 74px;
+    }
 
     .main-navigation {
         position: absolute;
@@ -3753,7 +3993,22 @@ p:last-child {
 
         gap: 0;
 
-        padding: 15px 24px 24px;
+        max-height:
+            calc(100vh - 75px);
+
+        overflow-y: auto;
+
+        padding:
+            14px
+            max(
+                20px,
+                env(safe-area-inset-right)
+            )
+            22px
+            max(
+                20px,
+                env(safe-area-inset-left)
+            );
 
         border-bottom:
             1px solid
@@ -3776,13 +4031,16 @@ p:last-child {
     }
 
     .main-navigation > a {
-        padding: 14px 8px !important;
+        min-height: 50px;
+
+        padding:
+            14px 8px !important;
 
         color: #e7f0fa;
-    }
 
-    .main-navigation > a:hover {
-        color: var(--white);
+        font-size: 1rem;
+
+        white-space: normal;
     }
 
     .main-navigation > a::after {
@@ -3792,12 +4050,19 @@ p:last-child {
     .main-navigation .nav-button {
         margin-top: 10px;
 
+        justify-content: center;
+
         text-align: center;
     }
 
     .menu-toggle {
         display: block;
     }
+
+
+    /* --------------------------------------------------------
+       HERO
+    -------------------------------------------------------- */
 
     .hero-grid {
         grid-template-columns: 1fr;
@@ -3819,6 +4084,11 @@ p:last-child {
         width: min(440px, 100%);
     }
 
+
+    /* --------------------------------------------------------
+       GENERAL GRIDS
+    -------------------------------------------------------- */
+
     .section-intro,
     .about-grid,
     .career-inner {
@@ -3827,10 +4097,29 @@ p:last-child {
         gap: 35px;
     }
 
+    .section-intro {
+        margin-bottom: 45px;
+    }
+
     .expertise-grid {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2, minmax(0, 1fr));
     }
+
+    .masterclass-grid,
+    .education-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .technology-bar {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* --------------------------------------------------------
+       PROJECT
+    -------------------------------------------------------- */
 
     .featured-project {
         display: flex;
@@ -3850,19 +4139,9 @@ p:last-child {
         height: auto;
     }
 
-    .masterclass-grid,
-    .education-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .technology-bar {
-        grid-template-columns: 1fr;
-    }
-
 
     /* --------------------------------------------------------
-       CONTACT TABLET
+       CONTACT
     -------------------------------------------------------- */
 
     .contact-header {
@@ -3873,15 +4152,8 @@ p:last-child {
         align-items: start;
     }
 
-    /*
-       Keep the two panels stacked on tablet.
-       Each panel retains its own background.
-    */
-
     .contact-main {
         grid-template-columns: 1fr;
-
-        gap: 0;
 
         border-radius: 22px;
     }
@@ -3896,14 +4168,6 @@ p:last-child {
 
     .contact-details {
         padding: 38px;
-    }
-
-    .contact-cta {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-cta-actions {
-        justify-content: flex-start;
     }
 
 
@@ -3944,115 +4208,42 @@ p:last-child {
 
 
 /* ============================================================
-   MOBILE
+   47. LARGE PHONE / SMALL TABLET
 ============================================================ */
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
 
-    html {
-        font-size: 100%;
+    :root {
+        --page-padding: 18px;
     }
 
     body {
-        font-size: 1.08rem;
+        font-size: 1.03rem;
     }
 
     .container {
         width:
             min(
                 var(--container),
-                calc(100% - 32px)
+                calc(100% - 36px)
             );
-    }
-
-    .header-inner {
-        min-height: 72px;
-    }
-
-    .brand-logo {
-        width: 42px;
-        height: 42px;
-    }
-
-    .brand-copy strong {
-        font-size: 1.05rem;
-    }
-
-    .brand-copy span {
-        font-size: 0.86rem;
-    }
-
-    .hero {
-        min-height: auto;
-    }
-
-    .hero-grid {
-        padding-block: 60px;
-    }
-
-    .hero h1 {
-        font-size:
-            clamp(
-                2.5rem,
-                12vw,
-                3.6rem
-            );
-    }
-
-    .hero-lead {
-        font-size: 1.2rem;
-    }
-
-    .hero-supporting {
-        font-size: 1.05rem;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .hero-actions .button {
-        width: 100%;
-    }
-
-    .hero-availability {
-        align-items: flex-start;
-    }
-
-    .professional-strip-inner {
-        padding-block: 24px;
-
-        display: grid;
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 15px;
-    }
-
-    .professional-strip span {
-        font-size: 0.85rem;
     }
 
     .section {
-        padding-block: 75px;
-    }
-
-    .section-intro {
-        margin-bottom: 40px;
+        padding-block: 76px;
     }
 
     .section-intro h2 {
-        font-size: 2.3rem;
+        font-size: 2.35rem;
     }
 
     .about-main .large-paragraph {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
     }
 
-    .expertise-grid {
+    .expertise-grid,
+    .masterclass-grid,
+    .education-grid {
         grid-template-columns: 1fr;
     }
 
@@ -4061,12 +4252,251 @@ p:last-child {
     }
 
     .profile-image-container {
-        min-height: 400px;
+        min-height: 410px;
+    }
+
+    .timeline-item {
+        grid-template-columns:
+            48px
+            minmax(0, 1fr);
+
+        gap: 18px;
+    }
+
+    .timeline-marker {
+        width: 48px;
+        height: 48px;
+    }
+
+    .timeline::before {
+        left: 23px;
+    }
+}
+
+
+/* ============================================================
+   48. MOBILE
+============================================================ */
+
+@media (max-width: 650px) {
+
+    html {
+        font-size: 100%;
+
+        scroll-padding-top: 76px;
+    }
+
+    body {
+        font-size: 1.04rem;
+    }
+
+    .container {
+        width:
+            calc(100% - 32px);
     }
 
 
     /* --------------------------------------------------------
-       BUSINESSCONNECT MOBILE
+       HEADER
+    -------------------------------------------------------- */
+
+    .header-inner {
+        min-height: 72px;
+
+        gap: 14px;
+    }
+
+    .brand {
+        gap: 10px;
+
+        min-width: 0;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+
+        flex-basis: 42px;
+
+        border-radius: 11px;
+    }
+
+    .brand-copy {
+        min-width: 0;
+    }
+
+    .brand-copy strong {
+        font-size: 1.04rem;
+    }
+
+    .brand-copy span {
+        font-size: 0.82rem;
+    }
+
+    .menu-toggle {
+        width: 46px;
+        height: 44px;
+    }
+
+
+    /* --------------------------------------------------------
+       HERO
+    -------------------------------------------------------- */
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-grid {
+        padding-block: 58px 64px;
+
+        gap: 42px;
+    }
+
+    .hero h1 {
+        margin-bottom: 21px;
+
+        font-size:
+            clamp(
+                2.45rem,
+                12vw,
+                3.6rem
+            );
+
+        line-height: 1;
+    }
+
+    .hero-lead {
+        font-size: 1.18rem;
+
+        line-height: 1.55;
+    }
+
+    .hero-supporting {
+        font-size: 1rem;
+
+        line-height: 1.7;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .hero-availability {
+        align-items: flex-start;
+
+        gap: 10px;
+
+        line-height: 1.45;
+    }
+
+    .profile-card {
+        padding: 15px;
+
+        border-radius: 21px;
+    }
+
+    .profile-image-container {
+        min-height: 400px;
+
+        border-radius: 16px;
+    }
+
+    .profile-actions {
+        width: 100%;
+    }
+
+
+    /* --------------------------------------------------------
+       PROFESSIONAL STRIP
+    -------------------------------------------------------- */
+
+    .professional-strip-inner {
+        min-height: auto;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+
+        padding-block: 22px;
+    }
+
+    .professional-strip span {
+        font-size: 0.84rem;
+    }
+
+
+    /* --------------------------------------------------------
+       SECTIONS
+    -------------------------------------------------------- */
+
+    .section {
+        padding-block: 70px;
+    }
+
+    .section-intro {
+        gap: 22px;
+
+        margin-bottom: 38px;
+    }
+
+    .section-intro h2 {
+        font-size: 2.25rem;
+    }
+
+    .section-intro p {
+        font-size: 1rem;
+
+        line-height: 1.7;
+    }
+
+
+    /* --------------------------------------------------------
+       ABOUT
+    -------------------------------------------------------- */
+
+    .about-highlight,
+    .about-point {
+        padding: 21px;
+    }
+
+
+    /* --------------------------------------------------------
+       EXPERTISE
+    -------------------------------------------------------- */
+
+    .expertise-card {
+        padding: 23px;
+
+        border-radius: 16px;
+    }
+
+    .technology-bar {
+        gap: 17px;
+
+        margin-top: 35px;
+
+        padding: 18px;
+    }
+
+    .technology-list span {
+        font-size: 0.82rem;
+    }
+
+
+    /* --------------------------------------------------------
+       BUSINESSCONNECT
     -------------------------------------------------------- */
 
     .featured-project {
@@ -4079,14 +4509,16 @@ p:last-child {
 
     .project-label-row {
         align-items: flex-start;
+
+        flex-wrap: wrap;
     }
 
     .project-content h3 {
-        font-size: 2.1rem;
+        font-size: 2.05rem;
     }
 
     .project-summary {
-        font-size: 1.08rem;
+        font-size: 1.06rem;
 
         margin-bottom: 20px;
     }
@@ -4098,11 +4530,13 @@ p:last-child {
     }
 
     .project-overview p {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
     }
 
     .project-modules {
         grid-template-columns: 1fr;
+
+        gap: 10px;
     }
 
     .project-links {
@@ -4116,9 +4550,20 @@ p:last-child {
     }
 
     .project-browser {
-        width: 100%;
-
         border-radius: 14px;
+    }
+
+    .browser-bar {
+        min-height: 42px;
+
+        padding-inline: 13px;
+    }
+
+    .browser-dot {
+        width: 9px;
+        height: 9px;
+
+        flex-basis: 9px;
     }
 
     .businessconnect-image {
@@ -4131,7 +4576,49 @@ p:last-child {
 
 
     /* --------------------------------------------------------
-       CONTACT MOBILE
+       TIMELINE
+    -------------------------------------------------------- */
+
+    .timeline {
+        gap: 25px;
+    }
+
+    .timeline-item {
+        grid-template-columns:
+            44px
+            minmax(0, 1fr);
+
+        gap: 15px;
+    }
+
+    .timeline-marker {
+        width: 44px;
+        height: 44px;
+
+        font-size: 0.8rem;
+
+        box-shadow:
+            0 0 0 6px
+            #f0fdf4;
+    }
+
+    .timeline::before {
+        left: 21px;
+    }
+
+    .timeline-content {
+        padding: 19px;
+
+        border-radius: 14px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.4rem;
+    }
+
+
+    /* --------------------------------------------------------
+       CONTACT HEADER
     -------------------------------------------------------- */
 
     .contact-header {
@@ -4141,19 +4628,26 @@ p:last-child {
     }
 
     .contact-header h2 {
-        font-size: 2.5rem;
+        font-size: 2.45rem;
     }
 
     .contact-header p {
-        font-size: 1.12rem;
+        font-size: 1.08rem;
+
+        line-height: 1.7;
     }
+
+
+    /* --------------------------------------------------------
+       CONTACT AVAILABILITY
+    -------------------------------------------------------- */
 
     .contact-availability-wide {
         align-items: flex-start;
 
         flex-direction: column;
 
-        padding: 20px;
+        padding: 19px;
 
         margin-bottom: 28px;
     }
@@ -4163,11 +4657,11 @@ p:last-child {
     }
 
     .contact-status strong {
-        font-size: 1.15rem;
+        font-size: 1.12rem;
     }
 
     .contact-status > span:last-child {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
     }
 
     .contact-status-label {
@@ -4175,33 +4669,29 @@ p:last-child {
     }
 
 
-    /*
-       IMPORTANT:
-       The panels remain visually distinct when stacked.
-       Green = introduction
-       Blue = contact details
-    */
+    /* --------------------------------------------------------
+       CONTACT PANELS
+    -------------------------------------------------------- */
 
     .contact-main {
         grid-template-columns: 1fr;
 
-        gap: 0;
-
-        border-radius: 20px;
+        border-radius: 19px;
     }
 
     .contact-introduction {
-        padding: 32px 25px;
+        padding: 32px 24px;
 
-        border-radius: 20px 20px 0 0;
+        border-radius:
+            19px 19px 0 0;
     }
 
     .contact-introduction h3 {
-        font-size: 2.25rem;
+        font-size: 2.2rem;
     }
 
     .contact-introduction > p {
-        font-size: 1.08rem;
+        font-size: 1.05rem;
     }
 
     .contact-focus {
@@ -4209,14 +4699,20 @@ p:last-child {
     }
 
     .contact-details {
-        padding: 28px 20px;
+        padding: 27px 19px;
 
-        border-radius: 0 0 20px 20px;
+        border-radius:
+            0 0 19px 19px;
     }
 
     .contact-details h3 {
-        font-size: 1.9rem;
+        font-size: 1.85rem;
     }
+
+
+    /* --------------------------------------------------------
+       CONTACT ITEMS
+    -------------------------------------------------------- */
 
     .contact-list {
         gap: 10px;
@@ -4224,19 +4720,23 @@ p:last-child {
 
     .contact-item {
         grid-template-columns:
-            58px
+            56px
             minmax(0, 1fr)
             26px;
 
-        gap: 10px;
+        gap: 9px;
 
-        padding: 16px 14px;
+        min-height: 60px;
+
+        padding: 15px 13px;
+
+        border-radius: 12px;
     }
 
     .contact-item-value {
         gap: 8px;
 
-        font-size: 0.96rem;
+        font-size: 0.95rem;
     }
 
     .contact-item-value img,
@@ -4250,7 +4750,7 @@ p:last-child {
     }
 
     .contact-item-label {
-        font-size: 0.68rem;
+        font-size: 0.66rem;
     }
 
     .contact-item-arrow {
@@ -4259,11 +4759,6 @@ p:last-child {
 
         font-size: 0.8rem;
     }
-
-    /* --------------------------------------------------------
-       WHATSAPP MOBILE
-       ADDED — EXISTING MOBILE STYLES PRESERVED
-    -------------------------------------------------------- */
 
     .contact-whatsapp .contact-item-value i,
     .contact-whatsapp .contact-item-value .fa-whatsapp {
@@ -4275,6 +4770,11 @@ p:last-child {
         font-size: 19px;
     }
 
+
+    /* --------------------------------------------------------
+       CONTACT CTA
+    -------------------------------------------------------- */
+
     .contact-cta {
         grid-template-columns: 1fr;
 
@@ -4282,7 +4782,7 @@ p:last-child {
 
         margin-top: 22px;
 
-        padding: 28px 22px;
+        padding: 27px 21px;
 
         border-radius: 18px;
     }
@@ -4292,7 +4792,7 @@ p:last-child {
     }
 
     .contact-cta-content p {
-        font-size: 1rem;
+        font-size: 0.98rem;
     }
 
     .contact-cta-actions {
@@ -4309,7 +4809,7 @@ p:last-child {
 
 
     /* --------------------------------------------------------
-       SOCIAL PROFILE BUTTONS
+       SOCIAL BUTTONS
     -------------------------------------------------------- */
 
     .social-profile-buttons {
@@ -4321,48 +4821,33 @@ p:last-child {
     .social-profile-button {
         width: 100%;
 
+        min-height: 52px;
+
         justify-content: flex-start;
     }
 
 
     /* --------------------------------------------------------
-       EXPERIENCE
+       CAREER
     -------------------------------------------------------- */
 
-    .timeline-item {
-        grid-template-columns:
-            45px 1fr;
-
-        gap: 18px;
+    .career-card {
+        padding: 23px;
     }
 
-    .timeline-marker {
-        width: 45px;
-        height: 45px;
-
-        font-size: 0.85rem;
-    }
-
-    .timeline::before {
-        left: 21px;
-    }
-
-    .timeline-content {
-        padding: 20px;
-    }
-
-    .timeline-content h3 {
-        font-size: 1.5rem;
+    .career-list {
+        gap: 11px;
     }
 
 
     /* --------------------------------------------------------
-       OTHER SECTIONS
+       FOOTER
     -------------------------------------------------------- */
 
-    .masterclass-grid,
-    .education-grid {
-        grid-template-columns: 1fr;
+    .footer-inner {
+        gap: 35px;
+
+        padding-block: 48px;
     }
 
     .footer-links {
@@ -4372,113 +4857,212 @@ p:last-child {
 
 
 /* ============================================================
-   SMALL MOBILE
+   49. SMALL MOBILE
 ============================================================ */
 
 @media (max-width: 430px) {
+
+    :root {
+        --page-padding: 16px;
+    }
+
+    .container {
+        width:
+            calc(100% - 28px);
+    }
+
+
+    /* --------------------------------------------------------
+       HEADER
+    -------------------------------------------------------- */
 
     .brand-copy span {
         display: none;
     }
 
+    .brand-copy strong {
+        font-size: 1rem;
+    }
+
+
+    /* --------------------------------------------------------
+       HERO
+    -------------------------------------------------------- */
+
+    .hero-grid {
+        padding-block: 52px 58px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(
+                2.3rem,
+                12.5vw,
+                3.25rem
+            );
+    }
+
+    .hero-lead {
+        font-size: 1.1rem;
+    }
+
+    .hero-supporting {
+        font-size: 0.98rem;
+    }
+
     .profile-card {
-        padding: 15px;
+        padding: 13px;
+
+        border-radius: 18px;
     }
 
     .profile-image-container {
         min-height: 350px;
+
+        border-radius: 14px;
     }
 
     .profile-actions {
         flex-direction: column;
     }
 
-    .technology-list {
-        gap: 7px;
-    }
-
-    .technology-list span {
-        font-size: 0.88rem;
-    }
-
-    .professional-strip-inner {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-availability {
-        flex-direction: column;
-
-        gap: 8px;
-    }
-
-    .career-areas {
-        gap: 8px;
-    }
-
-    .career-areas span {
-        font-size: 0.9rem;
-    }
-
-    .project-label {
-        font-size: 0.78rem;
-    }
-
-    .project-year {
-        font-size: 0.8rem;
-    }
-
-    .project-content h3 {
-        font-size: 1.9rem;
-    }
-
-    .project-stack span {
-        font-size: 0.82rem;
-    }
-
-    .social-profile-button {
-        min-height: 54px;
-    }
-
-    .safe-link-notice {
-        font-size: 0.78rem;
+    .profile-actions .button {
+        width: 100%;
     }
 
 
     /* --------------------------------------------------------
-       CONTACT SMALL MOBILE
+       PROFESSIONAL STRIP
+    -------------------------------------------------------- */
+
+    .professional-strip-inner {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+
+        padding-block: 20px;
+    }
+
+
+    /* --------------------------------------------------------
+       SECTIONS
+    -------------------------------------------------------- */
+
+    .section {
+        padding-block: 64px;
+    }
+
+    .section-intro h2 {
+        font-size: 2.1rem;
+    }
+
+    .large-paragraph {
+        font-size: 1.05rem;
+    }
+
+
+    /* --------------------------------------------------------
+       TECHNOLOGIES
+    -------------------------------------------------------- */
+
+    .technology-list {
+        gap: 6px;
+    }
+
+    .technology-list span {
+        padding: 5px 8px;
+
+        font-size: 0.79rem;
+    }
+
+
+    /* --------------------------------------------------------
+       PROJECT
+    -------------------------------------------------------- */
+
+    .featured-project {
+        padding: 17px;
+
+        border-radius: 16px;
+    }
+
+    .project-label {
+        font-size: 0.76rem;
+    }
+
+    .project-year {
+        font-size: 0.78rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.82rem;
+    }
+
+    .project-summary {
+        font-size: 1rem;
+    }
+
+    .project-stack span {
+        padding: 6px 9px;
+
+        font-size: 0.79rem;
+    }
+
+    .project-cta {
+        min-height: 50px;
+
+        padding-inline: 15px;
+
+        font-size: 0.94rem;
+    }
+
+
+    /* --------------------------------------------------------
+       CONTACT
     -------------------------------------------------------- */
 
     .contact-header h2 {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
+    }
+
+    .contact-header p {
+        font-size: 1rem;
     }
 
     .contact-introduction {
-        padding: 28px 20px;
+        padding: 27px 19px;
     }
 
     .contact-introduction h3 {
-        font-size: 2rem;
+        font-size: 1.95rem;
+    }
+
+    .contact-introduction > p {
+        font-size: 1rem;
     }
 
     .contact-details {
-        padding: 25px 16px;
+        padding: 24px 14px;
     }
 
     .contact-details h3 {
-        font-size: 1.75rem;
+        font-size: 1.68rem;
     }
 
     .contact-item {
         grid-template-columns:
-            52px
+            50px
             minmax(0, 1fr)
             24px;
 
-        padding: 15px 12px;
+        gap: 8px;
+
+        padding:
+            14px 11px;
     }
 
     .contact-item-value {
-        font-size: 0.91rem;
+        font-size: 0.88rem;
     }
 
     .contact-item-value img,
@@ -4492,13 +5076,15 @@ p:last-child {
     }
 
     .contact-item-label {
-        font-size: 0.64rem;
+        font-size: 0.61rem;
     }
 
-    /* --------------------------------------------------------
-       WHATSAPP SMALL MOBILE
-       ADDED — EXISTING SMALL MOBILE STYLES PRESERVED
-    -------------------------------------------------------- */
+    .contact-item-arrow {
+        width: 24px;
+        height: 24px;
+
+        font-size: 0.75rem;
+    }
 
     .contact-whatsapp .contact-item-value i,
     .contact-whatsapp .contact-item-value .fa-whatsapp {
@@ -4511,17 +5097,210 @@ p:last-child {
     }
 
     .contact-cta {
-        padding: 25px 18px;
+        padding:
+            24px 17px;
     }
 
     .contact-cta-content h3 {
-        font-size: 1.65rem;
+        font-size: 1.58rem;
+    }
+
+
+    /* --------------------------------------------------------
+       TIMELINE
+    -------------------------------------------------------- */
+
+    .timeline-item {
+        grid-template-columns:
+            40px
+            minmax(0, 1fr);
+
+        gap: 13px;
+    }
+
+    .timeline-marker {
+        width: 40px;
+        height: 40px;
+
+        font-size: 0.75rem;
+
+        box-shadow:
+            0 0 0 5px
+            #f0fdf4;
+    }
+
+    .timeline::before {
+        left: 19px;
+    }
+
+    .timeline-content {
+        padding: 17px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3rem;
+    }
+
+
+    /* --------------------------------------------------------
+       SOCIAL / NOTICE
+    -------------------------------------------------------- */
+
+    .social-profile-button {
+        min-height: 54px;
+    }
+
+    .safe-link-notice {
+        font-size: 0.76rem;
+    }
+
+
+    /* --------------------------------------------------------
+       FOOTER
+    -------------------------------------------------------- */
+
+    .footer-inner {
+        padding-block: 42px;
+    }
+
+    .footer-bottom-inner {
+        font-size: 0.82rem;
     }
 }
 
 
 /* ============================================================
-   REDUCED MOTION
+   50. EXTRA SMALL DEVICES
+============================================================ */
+
+@media (max-width: 360px) {
+
+    .container {
+        width:
+            calc(100% - 24px);
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-lead {
+        font-size: 1.04rem;
+    }
+
+    .profile-image-container {
+        min-height: 320px;
+    }
+
+    .section-intro h2 {
+        font-size: 1.95rem;
+    }
+
+    .contact-item {
+        grid-template-columns:
+            46px
+            minmax(0, 1fr)
+            22px;
+
+        gap: 7px;
+
+        padding-inline: 9px;
+    }
+
+    .contact-item-label {
+        font-size: 0.58rem;
+    }
+
+    .contact-item-value {
+        font-size: 0.84rem;
+    }
+
+    .contact-item-value img,
+    .contact-item-value i {
+        width: 17px;
+        height: 17px;
+
+        flex-basis: 17px;
+
+        font-size: 16px;
+    }
+
+    .contact-item-arrow {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+
+/* ============================================================
+   51. LANDSCAPE PHONES
+============================================================ */
+
+@media (
+    max-height: 520px
+) and (
+    orientation: landscape
+) {
+
+    .hero-grid {
+        padding-block: 45px;
+    }
+
+    .profile-image-container {
+        min-height: 300px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(
+                2.3rem,
+                7vw,
+                3.5rem
+            );
+    }
+}
+
+
+/* ============================================================
+   52. TOUCH DEVICES
+============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .button,
+    .project-cta,
+    .contact-button,
+    .social-profile-button,
+    .menu-toggle {
+        min-height: 48px;
+    }
+
+    .main-navigation > a {
+        min-height: 48px;
+    }
+
+    .contact-item {
+        min-height: 60px;
+    }
+
+    /*
+       Remove hover movement on touch devices.
+       This prevents cards/buttons from feeling jumpy.
+    */
+
+    .expertise-card:hover,
+    .masterclass-card:hover,
+    .education-card:hover,
+    .timeline-content:hover,
+    .contact-item:hover,
+    .social-profile-button:hover {
+        transform: none;
+    }
+}
+
+
+/* ============================================================
+   53. REDUCED MOTION
 ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
